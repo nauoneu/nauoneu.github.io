@@ -8,8 +8,16 @@ Gitリポジトリを新規作成する。<br>
 - Source: Deploy from a Branch
 - Branch: main
 
+<<<<<<< HEAD
 これだけで `https://account.github.io/` でJekyllを使った静的Blogサイトが作られる。<br>
 まだJekyllのコンテンツを何もアップロードしていないので、この時点で上記URLにアクセスしても 404 File not found となる。
+=======
+これだけで `https://account.github.io/` で静的Blogサイトが作られる。<br>
+ここにHTMLファイルを作りこんでいくこともできるが、Github PagesではJekyllをサポートしていて、Markdownで記事を書いてGithubにあげればきれいに整形して見せてくれるというような便利な使い方ができる。<br>
+ということでここからJekyllを使えるように設定していく。
+
+まだindex.htmlもJekyllのコンテンツも何もアップロードしていないので、この時点で上記URLにアクセスしても 404 File not found となる。
+>>>>>>> 35142b0d2cef5bec64a332c358a0ca27c26290f0
 
 公式のクイックスタートガイドは少しあてにならない。<br>
 https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll<br>
@@ -77,6 +85,60 @@ https://jekyllrb-ja.github.io/<br>
 https://pages.github.com/
 
 # 3. カスタマイズ
+<<<<<<< HEAD
+=======
+Themeを変更する。<br>
+Github Pagesで利用可能なThemeは下記ページでリストされている。<br>
+選択肢が少ないが、比較的ページの構成がよさげだったArchitectにする。<br>
+https://pages.github.com/themes/<br>
+
+以下のサイトはTheme以外も含めてJekyllで利用できるプラグインがリストされている。<br>
+https://qiita.com/noraworld/items/f0da9ecb608476fe3a02
+
+やり方の流れとしては、<br>
+- Architect公式リポジトリからcloneしてローカルに落としてくる
+- ローカルでGemfileを編集
+- ローカルで動かしてみる
+- Githubにpush
+- Github Pagesで動くことを確認
+
+## 3.1 Themeを変更
+### (1) Architectの公式リポジトリからclone
+```
+$ git clone https://github.com/pages-themes/architect.git
+$ cd architect
+```
+
+### (2) Gemfileを編集
+Gemfileに以下の行を追加(デフォルトのminimaで生成されたGemfileから抜き出したもの)
+```
+gem "github-pages", "~> 229", group: :jekyll_plugins
+group :jekyll_plugins do
+  gem "jekyll-feed", "~> 0.12"
+end
+gem "webrick", "~> 1.8"
+```
+
+### (3) ローカルで実行
+エラーが出たら適宜修正。
+```
+$ bundle install
+$ bundle exec jekyll serve
+```
+http://127.0.0.1:4000/ で動作確認
+
+### (4) Github Pagesで動かす
+Githubへpush
+```
+cp -r /path/to/original/.git ./git
+git add .
+git commit -m "Theme updated"
+git push origin main
+```
+https://account.github.io/ で動作確認
+
+
+>>>>>>> 35142b0d2cef5bec64a332c358a0ca27c26290f0
 テーマの変更<br>
 https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll<br>
 https://jekyllrb.com/docs/themes/<br>
