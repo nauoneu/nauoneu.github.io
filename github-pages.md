@@ -21,10 +21,13 @@ GithubにはPagesという静的Webサイトを公開する機能がある。<br
   - [2.3 ローカルファイルをpush](#23-ローカルファイルをpush)
 - [3. カスタマイズ](#3-カスタマイズ)
   - [3.1 Themeを変更](#31-themeを変更)
-    - [(1) Architectの公式リポジトリからclone](#1-architectの公式リポジトリからclone)
-    - [(2) Gemfileを編集](#2-gemfileを編集)
-    - [(3) ローカルで実行](#3-ローカルで実行)
+    - [(1) Architect公式リポジトリからclone](#1-architect公式リポジトリからclone)
+    - [(2) ローカルでGemfileを編集](#2-ローカルでgemfileを編集)
+    - [(3) ローカルで動かしてみる](#3-ローカルで動かしてみる)
     - [(4) Github Pagesで動かす](#4-github-pagesで動かす)
+  - [3.2 カスタムドメイン設定](#32-カスタムドメイン設定)
+    - [(1) まずDNSレコードを設定する](#1-まずdnsレコードを設定する)
+    - [(2) Pagesの設定画面でカスタムドメインを登録](#2-pagesの設定画面でカスタムドメインを登録)
     - [参考リンク](#参考リンク)
 
 # 1. Github Pagesを有効にする
@@ -115,31 +118,29 @@ $ git push origin main
 ```
 
 # 3. カスタマイズ
-デフォルトのThemeでは見た目がいまいちなので、Themeを変更する。<br>
+サイトの見栄えをよくするためThemeを変更して、カスタムドメインでアクセスできるようにする。<br>
+
+## 3.1 Themeを変更
 Github Pagesで利用可能なThemeは下記ページでリストされている。<br>
 https://pages.github.com/themes/<br>
-
 選択肢が少ないが、比較的ページの構成がよさげだった `Architect` を入れてみる。<br>
 https://github.com/pages-themes/architect<br>
-
 以下のサイトはTheme以外にもJekyllで利用できるプラグインがリストされている。<br>
 https://qiita.com/noraworld/items/f0da9ecb608476fe3a02
 
-やり方の流れとしては、<br>
-- Architect公式リポジトリからcloneしてローカルに落としてくる
-- ローカルでGemfileを編集
-- ローカルで動かしてみる
-- Githubにpush
-- Github Pagesで動くことを確認
+Theme変更の流れ:<br>
+(1) Architect公式リポジトリからclone<br>
+(2) ローカルでGemfileを編集<br>
+(3) ローカルで動かしてみる<br>
+(4) Github Pagesで動かす<br>
 
-## 3.1 Themeを変更
-### (1) Architectの公式リポジトリからclone
+### (1) Architect公式リポジトリからclone
 ```
 $ git clone https://github.com/pages-themes/architect.git
 $ cd architect
 ```
 
-### (2) Gemfileを編集
+### (2) ローカルでGemfileを編集
 Gemfileに以下の行を追加(デフォルトのminimaで生成されたGemfileから抜き出したもの)
 ```
 gem "github-pages", "~> 229", group: :jekyll_plugins
@@ -149,7 +150,7 @@ end
 gem "webrick", "~> 1.8"
 ```
 
-### (3) ローカルで実行
+### (3) ローカルで動かしてみる
 エラーが出たら適宜修正。
 ```
 $ bundle install
@@ -167,6 +168,24 @@ git push origin main
 ```
 https://account-name.github.io/ で動作確認
 
+## 3.2 カスタムドメイン設定
+`yourdomain.com` のようなカスタムドメインでアクセスできるようにする。<br>
+https://yourdomain.com<br>
+https://www.yourdomain.com<br>
+どちらでもアクセスできるようになる。
+
+### (1) まずDNSレコードを設定する
+ドメインレジストラのDNSサービスなどでDNSレコードを設定する。
+- yourdomain.com の Aレコード<br>
+- www.yourdomain.com の CNAMEレコード<br>
+
+設定する内容は以下リンク先を参照<br>
+https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain
+
+### (2) Pagesの設定画面でカスタムドメインを登録
+Custom domain のところに www.yourdomain.com を設定<br>
+これで yourdomain.com と www.yourdomain.com の両方アクセスできるようになる。<br>
+Enforce HTTPS にチェックを入れると、Let's Encryptで証明書を発行してHTTPSアクセスができるようになる。<br>
 
 ### 参考リンク
 https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll<br>
