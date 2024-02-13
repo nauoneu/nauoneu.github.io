@@ -1,27 +1,62 @@
+<!-- omit in toc -->
+# Github PagesでBlogサイトを作る
 
+GithubにはPagesという静的Webサイトを公開する機能がある。<br>
+静的サイトなので検索プラグインなどはつけられないが、Jekyllが使えるのでMarkdownで書いたドキュメントを置くだけできれいに整形して表示してくれる。<br>
+つまり、ローカルでMarkdownでブログ記事を書いて、それをGitでアップロードするだけで公開できてしまうということで、ブログの執筆が効率化できる素晴らしいサービスである。<br>
+
+ここではGithub Pagesを使えるようにするための簡単な手順をまとめる。<br>
+
+- [1. Github Pagesを有効にする](#1-github-pagesを有効にする)
+- [2. ローカル環境をつくる](#2-ローカル環境をつくる)
+  - [2.1 ローカルリポジトリの作成](#21-ローカルリポジトリの作成)
+  - [2.2 Jekyllをローカルで動かす](#22-jekyllをローカルで動かす)
+    - [(1) Install prerequisites](#1-install-prerequisites)
+    - [(2) Install the jekyll and bundler gems](#2-install-the-jekyll-and-bundler-gems)
+    - [(3) Install webrick](#3-install-webrick)
+    - [(4) Create a new Jekyll site at ./myblog](#4-create-a-new-jekyll-site-at-myblog)
+    - [(5) Change into your new directory](#5-change-into-your-new-directory)
+    - [(6) Edit Gemfile](#6-edit-gemfile)
+    - [(7) Build the site and make it available on a local server](#7-build-the-site-and-make-it-available-on-a-local-server)
+  - [2.3 ローカルファイルをpush](#23-ローカルファイルをpush)
+- [3. カスタマイズ](#3-カスタマイズ)
+  - [3.1 Themeを変更](#31-themeを変更)
+    - [(1) Architectの公式リポジトリからclone](#1-architectの公式リポジトリからclone)
+    - [(2) Gemfileを編集](#2-gemfileを編集)
+    - [(3) ローカルで実行](#3-ローカルで実行)
+    - [(4) Github Pagesで動かす](#4-github-pagesで動かす)
+    - [参考リンク](#参考リンク)
 
 # 1. Github Pagesを有効にする
 Gitリポジトリを新規作成する。<br>
-- リポジトリ名: `account_name.github.io`<br>
+PagesでJekyllを使う場合は以下のようなネーミングルールで作成しないとダメ。<br>
+- リポジトリ名: `account-name.github.io`<br>
 
-次に `Settings > Pages` からPagesを有効にする。
+次にリポジトリの `Settings > Pages` からPagesを有効にする。
 - Source: Deploy from a Branch
 - Branch: main
 
-これだけで `https://account.github.io/` で静的Blogサイトが作られる。<br>
+これだけで `https://account-name.github.io/` で静的Blogサイトが作られる。<br>
 ここにHTMLファイルを作りこんでいくこともできるが、Github PagesではJekyllをサポートしていて、Markdownで記事を書いてGithubにあげればきれいに整形して見せてくれるというような便利な使い方ができる。<br>
 ということでここからJekyllを使えるように設定していく。
 
 まだindex.htmlもJekyllのコンテンツも何もアップロードしていないので、この時点で上記URLにアクセスしても 404 File not found となる。
 
-公式のクイックスタートガイドは少しあてにならない。<br>
+公式のクイックスタートガイド。基本的にこれに沿って作業していく。<br>
 https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll<br>
-これはHexo(JS)の例だがイメージをつかむのに参考になる<br>
+
+これはHexo(Js)で設定した例だがイメージをつかむのに参考になる。<br>
+Hexoの場合は上記のリポジトリ名ルールでなくても動くみたい。<br>
 https://www.bedroomcomputing.com/2020/08/2020-0815-engineer-static-site-gen-blog/<br>
 https://www.bedroomcomputing.com/2020/11/2020-1123-hexo-github/
 
-# 2. ローカルで編集作業できるようにする
-## 2.1 ローカルリポジトリの設定
+# 2. ローカル環境をつくる
+設定の流れは以下のようになる。
+- まずローカルでGitリポジトリを作って、そこにJekyll環境を作る
+- Jekyllの設定ファイルやTheme、ブログ記事がリポジトリ内に保存される
+- Jekyllの設定変更や、執筆したブログ記事はGitコマンドでリモートリポジトリにPushする
+
+## 2.1 ローカルリポジトリの作成
 ```
 $ mkdir path/to/local/repo
 $ cd pas/to/local/repo
@@ -34,7 +69,8 @@ $ git pull origin main
 https://jekyllrb.com/docs/<br>
 https://jekyllrb.com/docs/installation/<br>
 https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll<br>
-ここらを参照して設定。
+ここらを参照して設定。<br>
+一連の作業が無事終わると、Jekyllにデフォルトで入っているminimaというThemeでサイトが起動する。
 
 ### (1) Install prerequisites
 `sudo apt-get install ruby-full build-essential`
@@ -66,26 +102,27 @@ https://pages.github.com/versions/
 `bundle install`
 
 ### (7) Build the site and make it available on a local server
-`bundle exec jekyll serve`
+`bundle exec jekyll serve`<br>
+成功すると、http://127.0.0.1:4000 でサイトが起動する。
 
 ## 2.3 ローカルファイルをpush
+ローカルで動いたJekyll環境を、リモートリポジトリにPushする。<br>
+うまくいったら https://account-name.github.io/ でアクセスできる。
 ```
 $ git add .
 $ git commit -m "Initial commit"
 $ git push origin main
 ```
 
-## 2.4 References
-https://jekyllrb-ja.github.io/<br>
-https://pages.github.com/
-
 # 3. カスタマイズ
-Themeを変更する。<br>
+デフォルトのThemeでは見た目がいまいちなので、Themeを変更する。<br>
 Github Pagesで利用可能なThemeは下記ページでリストされている。<br>
-選択肢が少ないが、比較的ページの構成がよさげだったArchitectにする。<br>
 https://pages.github.com/themes/<br>
 
-以下のサイトはTheme以外も含めてJekyllで利用できるプラグインがリストされている。<br>
+選択肢が少ないが、比較的ページの構成がよさげだった `Architect` を入れてみる。<br>
+https://github.com/pages-themes/architect<br>
+
+以下のサイトはTheme以外にもJekyllで利用できるプラグインがリストされている。<br>
 https://qiita.com/noraworld/items/f0da9ecb608476fe3a02
 
 やり方の流れとしては、<br>
@@ -128,12 +165,9 @@ git add .
 git commit -m "Theme updated"
 git push origin main
 ```
-https://account.github.io/ で動作確認
+https://account-name.github.io/ で動作確認
 
 
-テーマの変更<br>
+### 参考リンク
 https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll<br>
 https://jekyllrb.com/docs/themes/<br>
-タイトルの変更<br>
-https://docs.github.com/ja/pages/quickstart<br>
-https://jekyllrb.com/docs/themes/
