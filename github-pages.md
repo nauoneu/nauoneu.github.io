@@ -37,7 +37,7 @@ PagesでJekyllを使う場合は以下のようなネーミングルールで作
 - Branch: main
 
 これだけで `https://account-name.github.io/` で静的Blogサイトが作られる。<br>
-ここにHTMLファイルを作りこんでいくこともできるが、Github PagesではJekyllをサポートしていて、Markdownで記事を書いてGithubにあげればきれいに整形して見せてくれるというような便利な使い方ができる。<br>
+ここにHTMLファイルを作りこんでいくこともできるが、Jekyllを使ってMarkdownで記事を書いていくのが楽でいい。<br>
 ということでここからJekyllを使えるように設定していく。
 
 まだindex.htmlもJekyllのコンテンツも何もアップロードしていないので、この時点で上記URLにアクセスしても 404 File not found となる。
