@@ -12,7 +12,7 @@ GithubにはPagesという静的Webサイトを公開する機能がある。<br
   - [2.1 ローカルリポジトリの作成](#21-ローカルリポジトリの作成)
   - [2.2 Jekyllをローカルで動かす](#22-jekyllをローカルで動かす)
     - [(1) GEMの保存先を設定](#1-gemの保存先を設定)
-    - [(2) Rubyをインストール](#2-rubyをインストール)
+    - [(2) Ruby をインストール](#2-ruby-をインストール)
     - [(3) jekyll と bundler をインストール](#3-jekyll-と-bundler-をインストール)
     - [(4) webrick をインストール](#4-webrick-をインストール)
     - [(5) Jekyll サイトを ./myblog に作成](#5-jekyll-サイトを-myblog-に作成)
@@ -77,16 +77,19 @@ https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/crea
 一連の作業が無事終わると、Jekyllにデフォルトで入っているminimaというThemeでサイトが起動する。
 
 ### (1) GEMの保存先を設定
-以下を.bashrcに書く。<br>
+gemはRubyのパッケージ（ライブラリ）管理の仕組みで、Pythonでいうところのpip。<br>
+rootでインストールするとパッケージの依存関係で先々困ることになるので、ユーザー毎にgemの保存先を設定して管理するような仕組みになっている。<br>
+詳細は以下のサイトなどを参照。<br>
+https://qiita.com/oshou/items/6283c2315dc7dd244aef
+
+以下を.bashrcに書いて `source .bashrc` で読み込む。
 ```
 export GEM_HOME="$HOME/gems"
 export BUNDLE_PATH="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 ```
-環境変数の読み込み。<br>
-`source .bashrc`
 
-### (2) Rubyをインストール
+### (2) Ruby をインストール
 `sudo apt-get install ruby-full build-essential`
 
 ### (3) jekyll と bundler をインストール
