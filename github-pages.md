@@ -11,6 +11,7 @@ GithubにはPagesという静的Webサイトを公開する機能がある。<br
 - [2. ローカル環境をつくる](#2-ローカル環境をつくる)
   - [2.1 ローカルリポジトリの作成](#21-ローカルリポジトリの作成)
   - [2.2 Jekyllをローカルで動かす](#22-jekyllをローカルで動かす)
+    - [(0) GEMの保存先を設定](#0-gemの保存先を設定)
     - [(1) Install prerequisites](#1-install-prerequisites)
     - [(2) Install the jekyll and bundler gems](#2-install-the-jekyll-and-bundler-gems)
     - [(3) Install webrick](#3-install-webrick)
@@ -74,6 +75,15 @@ https://jekyllrb.com/docs/installation/<br>
 https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll<br>
 ここらを参照して設定。<br>
 一連の作業が無事終わると、Jekyllにデフォルトで入っているminimaというThemeでサイトが起動する。
+
+### (0) GEMの保存先を設定
+以下を.bashrcに書く。<br>
+```
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+```
+環境変数の読み込み。<br>
+`source .bashrc`
 
 ### (1) Install prerequisites
 `sudo apt-get install ruby-full build-essential`
