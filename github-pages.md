@@ -14,11 +14,9 @@ GithubにはPagesという静的Webサイトを公開する機能がある。<br
     - [(1) GEMの保存先を設定](#1-gemの保存先を設定)
     - [(2) Ruby をインストール](#2-ruby-をインストール)
     - [(3) jekyll と bundler をインストール](#3-jekyll-と-bundler-をインストール)
-    - [(4) webrick をインストール](#4-webrick-をインストール)
-    - [(5) Jekyll サイトを ./myblog に作成](#5-jekyll-サイトを-myblog-に作成)
-    - [(6) webrick をインストール](#6-webrick-をインストール)
-    - [(7) Gemfile を編集して gem を一括インストール](#7-gemfile-を編集して-gem-を一括インストール)
-    - [(8) Jekyll サイトを起動](#8-jekyll-サイトを起動)
+    - [(4) Jekyll サイトを ./myblog に作成](#4-jekyll-サイトを-myblog-に作成)
+    - [(5) Gemfile を編集して gem を一括インストール](#5-gemfile-を編集して-gem-を一括インストール)
+    - [(6) Jekyll サイトを起動](#6-jekyll-サイトを起動)
   - [2.3 ローカルファイルをpush](#23-ローカルファイルをpush)
 - [3. カスタマイズ](#3-カスタマイズ)
   - [3.1 Themeを変更](#31-themeを変更)
@@ -56,9 +54,9 @@ https://www.bedroomcomputing.com/2020/11/2020-1123-hexo-github/
 
 # 2. ローカル環境をつくる
 設定の流れは以下のようになる。
-- まずローカルでGitリポジトリを作って、そこにJekyll環境を作る
-- Jekyllの設定ファイルやTheme、ブログ記事がリポジトリ内に保存される
-- Jekyllの設定変更や、執筆したブログ記事はGitコマンドでリモートリポジトリにPushする
+- ローカルでGitリポジトリを作って、そこにJekyll環境を作る
+- リモートリポジトリにJekyll環境をPushする
+- Jekyllの設定ファイルやブログ記事はローカルで編集し、リモートリポジトリにPush
 
 ## 2.1 ローカルリポジトリの作成
 ```
@@ -95,21 +93,14 @@ export PATH="$HOME/gems/bin:$PATH"
 ### (3) jekyll と bundler をインストール
 `gem install jekyll bundler`
 
-### (4) webrick をインストール
-`gem install webrick`<br>
-`bundle add webrick`
-
-### (5) Jekyll サイトを ./myblog に作成
+### (4) Jekyll サイトを ./myblog に作成
 `jekyll new myblog`
 `cd myblog`
 
-### (6) webrick をインストール
-`gem install webrick`<br>
-`bundle add webrick`
-
-### (7) Gemfile を編集して gem を一括インストール
+### (5) Gemfile を編集して gem を一括インストール
 gem "jekyll" で始まる行をコメントアウト。<br>
 gem "github-pages" で始まる行にバージョン `"~> 229"` を追記してアンコメント。<br>
+webrickも入れないとダメみたい。
 ```
 #gem "jekyll", "~> 4.3.3"
 gem "github-pages", "~> 229", group: :jekyll_plugins
@@ -123,7 +114,7 @@ https://pages.github.com/versions/
 正しいバージョンの Jekyll が github-pages gem の依存関係としてインストールされる。<br>
 `bundle install`
 
-### (8) Jekyll サイトを起動
+### (6) Jekyll サイトを起動
 `bundle exec jekyll serve`<br>
 成功すると、http://127.0.0.1:4000 でサイトが起動する。
 
