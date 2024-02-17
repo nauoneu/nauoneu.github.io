@@ -11,14 +11,12 @@ GithubにはPagesという静的Webサイトを公開する機能がある。<br
 - [2. ローカル環境をつくる](#2-ローカル環境をつくる)
   - [2.1 ローカルリポジトリの作成](#21-ローカルリポジトリの作成)
   - [2.2 Jekyllをローカルで動かす](#22-jekyllをローカルで動かす)
-    - [(0) GEMの保存先を設定](#0-gemの保存先を設定)
-    - [(1) Install prerequisites](#1-install-prerequisites)
-    - [(2) Install the jekyll and bundler gems](#2-install-the-jekyll-and-bundler-gems)
-    - [(3) Install webrick](#3-install-webrick)
-    - [(4) Create a new Jekyll site at ./myblog](#4-create-a-new-jekyll-site-at-myblog)
-    - [(5) Change into your new directory](#5-change-into-your-new-directory)
-    - [(6) Edit Gemfile](#6-edit-gemfile)
-    - [(7) Build the site and make it available on a local server](#7-build-the-site-and-make-it-available-on-a-local-server)
+    - [(1) GEMの保存先を設定](#1-gemの保存先を設定)
+    - [(2) Ruby をインストール](#2-ruby-をインストール)
+    - [(3) jekyll と bundler をインストール](#3-jekyll-と-bundler-をインストール)
+    - [(4) Jekyll サイトを ./myblog に作成](#4-jekyll-サイトを-myblog-に作成)
+    - [(5) Gemfile を編集して gem を一括インストール](#5-gemfile-を編集して-gem-を一括インストール)
+    - [(6) Jekyll サイトを起動](#6-jekyll-サイトを起動)
   - [2.3 ローカルファイルをpush](#23-ローカルファイルをpush)
 - [3. カスタマイズ](#3-カスタマイズ)
   - [3.1 Themeを変更](#31-themeを変更)
@@ -56,9 +54,9 @@ Hexoの場合は上記のリポジトリ名ルールでなくても動くみた�
 
 # 2. ローカル環境をつくる
 設定の流れは以下のようになる。
-- まずローカルでGitリポジトリを作って、そこにJekyll環境を作る
-- Jekyllの設定ファイルやTheme、ブログ記事がリポジトリ内に保存される
-- Jekyllの設定変更や、執筆したブログ記事はGitコマンドでリモートリポジトリにPushする
+- ローカルでGitリポジトリを作って、そこにJekyll環境を作る
+- リモートリポジトリにJekyll環境をPushする
+- Jekyllの設定ファイルやブログ記事はローカルで編集し、リモートリポジトリにPush
 
 ## 2.1 ローカルリポジトリの作成
 ```
@@ -76,45 +74,47 @@ $ git pull origin main
 ここらを参照して設定。<br>
 一連の作業が無事終わると、Jekyllにデフォルトで入っているminimaというThemeでサイトが起動する。
 
-### (0) GEMの保存先を設定
-以下を.bashrcに書く。<br>
+### (1) GEMの保存先を設定
+gemはRubyのパッケージ（ライブラリ）管理の仕組みで、Pythonでいうところのpip。<br>
+rootでインストールするとパッケージの依存関係で先々困ることになるので、ユーザー毎にgemの保存先を設定して管理するような仕組みになっている。<br>
+詳細は以下のサイトなどを参照。<br>
+https://qiita.com/oshou/items/6283c2315dc7dd244aef
+
+以下を.bashrcに書いて `source .bashrc` で読み込む。
 ```
 export GEM_HOME="$HOME/gems"
+export BUNDLE_PATH="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 ```
-環境変数の読み込み。<br>
-`source .bashrc`
 
-### (1) Install prerequisites
+### (2) Ruby をインストール
 `sudo apt-get install ruby-full build-essential`
 
-### (2) Install the jekyll and bundler gems
+### (3) jekyll と bundler をインストール
 `gem install jekyll bundler`
 
-### (3) Install webrick
-`gem install webrick`<br>
-`bundle add webrick`
-
-### (4) Create a new Jekyll site at ./myblog
+### (4) Jekyll サイトを ./myblog に作成
 `jekyll new myblog`
-
-### (5) Change into your new directory<br>
 `cd myblog`
 
-### (6) Edit Gemfile
+### (5) Gemfile を編集して gem を一括インストール
 gem "jekyll" で始まる行をコメントアウト。<br>
 gem "github-pages" で始まる行にバージョン `"~> 229"` を追記してアンコメント。<br>
-`#gem "jekyll", "~> 4.3.3"`<br>
-`gem "github-pages", "~> 229", group: :jekyll_plugins`
+webrickも入れないとダメみたい。
+```
+#gem "jekyll", "~> 4.3.3"
+gem "github-pages", "~> 229", group: :jekyll_plugins
+gem "webrick", "~> 1.8"
+```
 
 github-pagesのバージョンはここから確認。<br>
 <https://pages.github.com/versions/>
 
 次のコマンドを実行。<br>
-上記の編集によって、正しいバージョンの Jekyll が github-pages gem の依存関係としてインストールされる。<br>
+正しいバージョンの Jekyll が github-pages gem の依存関係としてインストールされる。<br>
 `bundle install`
 
-### (7) Build the site and make it available on a local server
+### (6) Jekyll サイトを起動
 `bundle exec jekyll serve`<br>
 成功すると、<http://127.0.0.1:4000> でサイトが起動する。
 
@@ -169,9 +169,9 @@ $ bundle exec jekyll serve
 <http://127.0.0.1:4000/> で動作確認
 
 ### (4) Github Pagesで動かす
-Githubへpush
+ローカルリポジトリをarchitectフォルダへ引っ越して、Githubへpushする。<br>
 ```
-cp -r /path/to/original/.git ./git
+cp -r /path/to/original/.git ./
 git add .
 git commit -m "Theme updated"
 git push origin main
@@ -186,8 +186,8 @@ git push origin main
 
 ### (1) まずDNSレコードを設定する
 ドメインレジストラのDNSサービスなどでDNSレコードを設定する。
-- yourdomain.com の Aレコード<br>
-- www.yourdomain.com の CNAMEレコード<br>
+- `yourdomain.com` の Aレコード<br>
+- `www.yourdomain.com` の CNAMEレコード<br>
 
 設定する内容は以下リンク先を参照<br>
 <https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain>
