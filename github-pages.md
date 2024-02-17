@@ -1,6 +1,5 @@
 <!-- omit in toc -->
 # Github PagesでBlogサイトを作る
-<br>
 GithubにはPagesという静的Webサイトを公開する機能がある。<br>
 静的サイトなので検索プラグインがつけられないなど制限はあるが、個人用のBlogサイトとしては十分すぎる機能が無料で利用できる。<br>
 
@@ -79,7 +78,7 @@ $ git pull origin main
 gemはRubyのパッケージ（ライブラリ）管理の仕組みで、Pythonでいうところのpip。<br>
 rootでインストールするとパッケージの依存関係で先々困ることになるので、ユーザー毎にgemの保存先を設定して管理するような仕組みになっている。<br>
 詳細は以下のサイトなどを参照。<br>
-https://qiita.com/oshou/items/6283c2315dc7dd244aef
+<https://qiita.com/oshou/items/6283c2315dc7dd244aef>
 
 以下を.bashrcに書いて `source .bashrc` で読み込む。
 ```
@@ -89,14 +88,20 @@ export PATH="$HOME/gems/bin:$PATH"
 ```
 
 ### (2) Ruby をインストール
-`sudo apt-get install ruby-full build-essential`
+```
+sudo apt-get install ruby-full build-essential
+```
 
 ### (3) jekyll と bundler をインストール
-`gem install jekyll bundler`
+```
+gem install jekyll bundler
+```
 
 ### (4) Jekyll サイトを ./myblog に作成
-`jekyll new myblog`
-`cd myblog`
+```
+jekyll new myblog
+cd myblog
+```
 
 ### (5) Gemfile を編集して gem を一括インストール
 gem "jekyll" で始まる行をコメントアウト。<br>
@@ -113,10 +118,14 @@ github-pagesのバージョンはここから確認。<br>
 
 次のコマンドを実行。<br>
 正しいバージョンの Jekyll が github-pages gem の依存関係としてインストールされる。<br>
-`bundle install`
+```
+bundle install
+```
 
 ### (6) Jekyll サイトを起動
-`bundle exec jekyll serve`<br>
+```
+bundle exec jekyll serve
+```
 成功すると、<http://127.0.0.1:4000> でサイトが起動する。
 
 ## 2.3 ローカルファイルをpush

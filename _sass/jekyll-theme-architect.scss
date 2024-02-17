@@ -6,9 +6,9 @@
 /* LAYOUT STYLES */
 body {
   font-family: 'Noto Sans JP', 'Helvetica Neue', Helvetica, Arial, serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
   color: #666;
   background: #fafafa url(../images/body-bg.jpg) 0 0 repeat;
 }
@@ -36,7 +36,7 @@ header h1 {
   width: 540px;
   margin-top: 0;
   margin-bottom: 0.2em;
-  font-size: 72px;
+  font-size: 60px;
   font-weight: normal;
   line-height: 1;
   color: #fff;
@@ -125,27 +125,29 @@ aside a.button {
 code, pre {
   margin-bottom: 30px;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, 'Noto Sans JP';
-  font-size: 13px;
-  color: #222;
+  font-size: 15px;
+  color: #000000;
+  background-color: #a3a3a3;
 }
 
 code {
-  padding: 0 3px;
-  background-color: #f2f8fc;
-  border: solid 1px #dbe7f3;
+  padding: 4px;
+  border: none;
 }
 
 pre {
-  padding: 20px;
+  padding: 15px;
   overflow: auto;
   text-shadow: none;
-  background: #fff;
-  border: solid 1px #f2f2f2;
+  border: solid 1px #000000;
 }
+
 pre code {
   padding: 0;
-  color: #2879d0;
-  background-color: #fff;
+  font-size: 15px;
+  overflow: auto;
+  color: #000000;
+  background-color: #ffffff;
   border: none;
 }
 
@@ -189,11 +191,11 @@ form {
 /* GENERAL ELEMENT TYPE STYLES */
 
 #main-content h1 {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 24px;
+  margin-bottom: 16px;
   font-family: 'Noto Sans JP', 'Helvetica Neue', Helvetica, Arial, serif;
-  font-size: 2.8em;
-  font-weight: normal;
+  font-size: 32px;
+  font-weight: bold;
   color: #474747;
   text-indent: 6px;
   letter-spacing: -1px;
@@ -207,7 +209,8 @@ form {
 }
 
 #main-content h2 {
-  margin-bottom: 8px;
+  margin-top: 24px;
+  margin-bottom: 12px;
   font-family: 'Noto Sans JP', 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 22px;
   font-weight: bold;
@@ -223,7 +226,7 @@ form {
 
 #main-content h3 {
   margin-top: 24px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   font-family: 'Noto Sans JP', 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 18px;
   font-weight: bold;
