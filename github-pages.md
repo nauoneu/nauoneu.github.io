@@ -47,12 +47,12 @@ PagesでJekyllを使う場合は以下のようなネーミングルールで作
 まだindex.htmlもJekyllのコンテンツも何もアップロードしていないので、この時点で上記URLにアクセスしても 404 File not found となる。
 
 公式のクイックスタートガイド。基本的にこれに沿って作業していく。<br>
-https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll<br>
+<https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll><br>
 
 これはHexo(Js)で設定した例だがイメージをつかむのに参考になる。<br>
 Hexoの場合は上記のリポジトリ名ルールでなくても動くみたい。<br>
-https://www.bedroomcomputing.com/2020/08/2020-0815-engineer-static-site-gen-blog/<br>
-https://www.bedroomcomputing.com/2020/11/2020-1123-hexo-github/
+<https://www.bedroomcomputing.com/2020/08/2020-0815-engineer-static-site-gen-blog/><br>
+<https://www.bedroomcomputing.com/2020/11/2020-1123-hexo-github/>
 
 # 2. ローカル環境をつくる
 設定の流れは以下のようになる。
@@ -70,9 +70,9 @@ $ git pull origin main
 ```
 
 ## 2.2 Jekyllをローカルで動かす
-https://jekyllrb.com/docs/<br>
-https://jekyllrb.com/docs/installation/<br>
-https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll<br>
+<https://jekyllrb.com/docs/><br>
+<https://jekyllrb.com/docs/installation/><br>
+<https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll><br>
 ここらを参照して設定。<br>
 一連の作業が無事終わると、Jekyllにデフォルトで入っているminimaというThemeでサイトが起動する。
 
@@ -108,7 +108,7 @@ gem "github-pages" で始まる行にバージョン `"~> 229"` を追記して�
 `gem "github-pages", "~> 229", group: :jekyll_plugins`
 
 github-pagesのバージョンはここから確認。<br>
-https://pages.github.com/versions/
+<https://pages.github.com/versions/>
 
 次のコマンドを実行。<br>
 上記の編集によって、正しいバージョンの Jekyll が github-pages gem の依存関係としてインストールされる。<br>
@@ -116,11 +116,11 @@ https://pages.github.com/versions/
 
 ### (7) Build the site and make it available on a local server
 `bundle exec jekyll serve`<br>
-成功すると、http://127.0.0.1:4000 でサイトが起動する。
+成功すると、<http://127.0.0.1:4000> でサイトが起動する。
 
 ## 2.3 ローカルファイルをpush
 ローカルで動いたJekyll環境を、リモートリポジトリにPushする。<br>
-うまくいったら https://account-name.github.io/ でアクセスできる。
+うまくいったら <https://account-name.github.io/> でアクセスできる。
 ```
 $ git add .
 $ git commit -m "Initial commit"
@@ -132,11 +132,11 @@ $ git push origin main
 
 ## 3.1 Themeを変更
 Github Pagesで利用可能なThemeは下記ページでリストされている。<br>
-https://pages.github.com/themes/<br>
+<https://pages.github.com/themes/><br>
 選択肢が少ないが、比較的ページの構成がよさげだった `Architect` を入れてみる。<br>
-https://github.com/pages-themes/architect<br>
+<https://github.com/pages-themes/architect><br>
 以下のサイトはTheme以外にもJekyllで利用できるプラグインがリストされている。<br>
-https://qiita.com/noraworld/items/f0da9ecb608476fe3a02
+<https://qiita.com/noraworld/items/f0da9ecb608476fe3a02>
 
 Theme変更の流れ:<br>
 (1) Architect公式リポジトリからclone<br>
@@ -166,7 +166,7 @@ gem "webrick", "~> 1.8"
 $ bundle install
 $ bundle exec jekyll serve
 ```
-http://127.0.0.1:4000/ で動作確認
+<http://127.0.0.1:4000/> で動作確認
 
 ### (4) Github Pagesで動かす
 Githubへpush
@@ -176,12 +176,12 @@ git add .
 git commit -m "Theme updated"
 git push origin main
 ```
-https://account-name.github.io/ で動作確認
+<https://account-name.github.io/> で動作確認
 
 ## 3.2 カスタムドメイン設定
 `yourdomain.com` のようなカスタムドメインでアクセスできるようにする。<br>
-https://yourdomain.com<br>
-https://www.yourdomain.com<br>
+<https://yourdomain.com><br>
+<https://www.yourdomain.com><br>
 どちらでもアクセスできるようになる。
 
 ### (1) まずDNSレコードを設定する
@@ -190,7 +190,7 @@ https://www.yourdomain.com<br>
 - www.yourdomain.com の CNAMEレコード<br>
 
 設定する内容は以下リンク先を参照<br>
-https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain
+<https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain>
 
 ### (2) Pagesの設定画面でカスタムドメインを登録
 Custom domain のところに www.yourdomain.com を設定<br>
@@ -198,5 +198,5 @@ Custom domain のところに www.yourdomain.com を設定<br>
 Enforce HTTPS にチェックを入れると、Let's Encryptで証明書を発行してHTTPSアクセスができるようになる。<br>
 
 ### 参考リンク
-https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll<br>
-https://jekyllrb.com/docs/themes/<br>
+<https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll><br>
+<https://jekyllrb.com/docs/themes/><br>
