@@ -1,13 +1,15 @@
 <!-- omit in toc -->
 # Github PagesでBlogサイトを作る
 GithubにはPagesという静的Webサイトを公開する機能がある。<br>
-静的サイトなので検索プラグインがつけられないなど制限はあるが、個人用のBlogサイトとしては十分すぎる機能が無料で利用できる。<br>
+静的サイトなのでアクセス数の多いページを表示させるとかタグでIndexを生成するとかはできないが、個人用のBlogサイトとしては十分すぎる機能が無料で利用できる。<br>
 
-またGithub PagesではJekyllを使えるので、Markdownで書いたドキュメントをGithubリポジトリにアップするだけでWebサイトの更新ができてしまうという、大変優れたシステムである。<br>
+またGithub PagesではJekyllを使えるので、Markdownで書いたドキュメントをGithubリポジトリにアップするだけでWebサイトの更新ができてしまうという大変便利なサービスである。<br>
 
 ここではまずGithub PagesでJekyllを使った静的サイトが動くようにするまでの手順をまとめる。<br>
 
-- [1. Github Pagesを有効にする](#1-github-pagesを有効にする)
+- [1. Github Pagesサイトをつくる](#1-github-pagesサイトをつくる)
+  - [1.1 Githubアカウントを作る](#11-githubアカウントを作る)
+  - [1.2 リポジトリを作る](#12-リポジトリを作る)
 - [2. ローカル環境をつくる](#2-ローカル環境をつくる)
   - [2.1 ローカルリポジトリの作成](#21-ローカルリポジトリの作成)
   - [2.2 Jekyllをローカルで動かす](#22-jekyllをローカルで動かす)
@@ -29,8 +31,12 @@ GithubにはPagesという静的Webサイトを公開する機能がある。<br
     - [(2) Pagesの設定画面でカスタムドメインを登録](#2-pagesの設定画面でカスタムドメインを登録)
     - [参考リンク](#参考リンク)
 
-# 1. Github Pagesを有効にする
-Gitリポジトリを新規作成する。<br>
+# 1. Github Pagesサイトをつくる
+## 1.1 Githubアカウントを作る
+<https://github.com> へアクセスして適当なアカウントを作る。
+
+## 1.2 リポジトリを作る
+Githubへログインしてリポジトリを新規作成する。<br>
 PagesでJekyllを使う場合は以下のようなネーミングルールで作成しないとダメ。<br>
 - リポジトリ名: `account-name.github.io`<br>
 
@@ -42,12 +48,12 @@ PagesでJekyllを使う場合は以下のようなネーミングルールで作
 ここにHTMLファイルを作りこんでいくこともできるが、Jekyllを使ってMarkdownで記事を書いていくのが楽でいい。<br>
 ということでここからJekyllを使えるように設定していく。
 
-まだindex.htmlもJekyllのコンテンツも何もアップロードしていないので、この時点で上記URLにアクセスしても 404 File not found となる。
+まだコンテンツを何もアップロードしていないので、この時点で上記URLにアクセスしても 404 File not found となる。
 
-公式のクイックスタートガイド。基本的にこれに沿って作業していく。<br>
-<https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll><br>
+以下が公式のクイックスタートガイド。基本的にこれに沿って作業していく。<br>
+<https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll>
 
-これはHexo(Js)で設定した例だがイメージをつかむのに参考になる。<br>
+以下はHexo(Js)で設定した例だがイメージをつかむのに参考になる。<br>
 Hexoの場合は上記のリポジトリ名ルールでなくても動くみたい。<br>
 <https://www.bedroomcomputing.com/2020/08/2020-0815-engineer-static-site-gen-blog/><br>
 <https://www.bedroomcomputing.com/2020/11/2020-1123-hexo-github/>
@@ -55,8 +61,10 @@ Hexoの場合は上記のリポジトリ名ルールでなくても動くみた�
 # 2. ローカル環境をつくる
 設定の流れは以下のようになる。
 - ローカルでGitリポジトリを作って、そこにJekyll環境を作る
-- リモートリポジトリにJekyll環境をPushする
-- Jekyllの設定ファイルやブログ記事はローカルで編集し、リモートリポジトリにPush
+- Jekyll環境をローカルでチューニングする
+- できあがったJekyll環境をリモートリポジトリにPushする
+
+ローカル環境にはWSLを使う。
 
 ## 2.1 ローカルリポジトリの作成
 ```
