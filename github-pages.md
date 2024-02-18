@@ -1,3 +1,7 @@
+---
+title: Github Pages
+---
+
 <!-- omit in toc -->
 # Github PagesでBlogサイトを作る
 GithubにはPagesという静的Webサイトを公開する機能がある。<br>

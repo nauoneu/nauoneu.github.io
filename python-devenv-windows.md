@@ -1,3 +1,10 @@
+---
+title: Python
+---
+
+<!-- omit in toc -->
+# WindowsでPython開発環境をつくる
+
 Windows10/11でシンプルなPythonの開発環境を作成します。<br>
 PythonインタプリタはWindows用のものもありますが、ここではWSLでPythonインタプリタを実行する方法をまとめます。
 
