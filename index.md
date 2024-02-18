@@ -7,4 +7,4 @@ title: Index
 - [WindowsでPython開発環境をつくる](./python-devenv-windows)
 
 # Github Pages
-- [Github PagesでBlogサイトをつくる](./github-pages)
+- [Github PagesでBlogサイトをつくる](./github-pages-setup)
