@@ -7,7 +7,9 @@ title: Github Pages
 GithubにはPagesというWebサイトを公開する機能があり、GithubにアップしたHTMLファイルをWebサイトとして表示することができる。<br>
 静的サイトなのでアクセス数の多いページを表示させるとかタグでIndexを生成するとかはできないが、個人用のBlogサイトとしては十分すぎる機能が無料で利用できる。<br>
 
-またGithub PagesではJekyllという静的サイトジェネレーターを使えるので、Markdownで書いたドキュメントをGithubリポジトリにアップするだけでWebサイトの更新ができてしまうという大変便利なサービスである。<br>
+またGithub PagesではJekyllという静的サイトジェネレーターを使えるので、Markdownで書いたドキュメントをGithubリポジトリにアップすると自動的にHTMLに変換してアクセスできるようにしてくれる。<br>
+
+MarkdownとGitの仕組みを組み合わせてドキュメントのメンテナンスを効率的に行えるので、無料で利用できる個人用のドキュメントアーカイブとしては大変便利なサービスである。<br>
 
 ここではまずGithub PagesでJekyllを使った静的サイトが動くようにするまでの手順をまとめる。<br>
 
@@ -24,16 +26,7 @@ GithubにはPagesというWebサイトを公開する機能があり、Githubに
     - [(5) Gemfile を編集して gem を一括インストール](#5-gemfile-を編集して-gem-を一括インストール)
     - [(6) Jekyll サイトを起動](#6-jekyll-サイトを起動)
   - [2.3 ローカルファイルをpush](#23-ローカルファイルをpush)
-- [3. カスタマイズ](#3-カスタマイズ)
-  - [3.1 Themeを変更](#31-themeを変更)
-    - [(1) Architect公式リポジトリからclone](#1-architect公式リポジトリからclone)
-    - [(2) ローカルでGemfileを編集](#2-ローカルでgemfileを編集)
-    - [(3) ローカルで動かしてみる](#3-ローカルで動かしてみる)
-    - [(4) Github Pagesで動かす](#4-github-pagesで動かす)
-  - [3.2 カスタムドメイン設定](#32-カスタムドメイン設定)
-    - [(1) まずDNSレコードを設定する](#1-まずdnsレコードを設定する)
-    - [(2) Pagesの設定画面でカスタムドメインを登録](#2-pagesの設定画面でカスタムドメインを登録)
-    - [参考リンク](#参考リンク)
+- [3. Github Pagesサイトを更新する](#3-github-pagesサイトを更新する)
 
 # 1. Github Pagesサイトをつくる
 ## 1.1 Githubアカウントを作る
@@ -142,83 +135,12 @@ bundle exec jekyll serve
 
 ## 2.3 ローカルファイルをpush
 ローカルで動いたJekyll環境を、リモートリポジトリにPushする。<br>
-うまくいったら <https://account-name.github.io/> でアクセスできる。
+うまくいったら <https://account-name.github.io/> に反映される。
 ```
 $ git add .
 $ git commit -m "Initial commit"
 $ git push origin main
 ```
 
-# 3. カスタマイズ
-サイトの見栄えをよくするためThemeを変更して、カスタムドメインでアクセスできるようにする。<br>
-
-## 3.1 Themeを変更
-Github Pagesで利用可能なThemeは下記ページでリストされている。<br>
-<https://pages.github.com/themes/><br>
-選択肢が少ないが、比較的ページの構成がよさげだった `Architect` を入れてみる。<br>
-<https://github.com/pages-themes/architect><br>
-以下のサイトはTheme以外にもJekyllで利用できるプラグインがリストされている。<br>
-<https://qiita.com/noraworld/items/f0da9ecb608476fe3a02>
-
-Theme変更の流れ:<br>
-(1) Architect公式リポジトリからclone<br>
-(2) ローカルでGemfileを編集<br>
-(3) ローカルで動かしてみる<br>
-(4) Github Pagesで動かす<br>
-
-### (1) Architect公式リポジトリからclone
-```
-$ git clone https://github.com/pages-themes/architect.git
-$ cd architect
-```
-
-### (2) ローカルでGemfileを編集
-Gemfileに以下の行を追加(デフォルトのminimaで生成されたGemfileから抜き出したもの)
-```
-gem "github-pages", "~> 229", group: :jekyll_plugins
-group :jekyll_plugins do
-  gem "jekyll-feed", "~> 0.12"
-end
-gem "webrick", "~> 1.8"
-```
-
-### (3) ローカルで動かしてみる
-エラーが出たら適宜修正。
-```
-$ bundle install
-$ bundle exec jekyll serve
-```
-<http://127.0.0.1:4000/> で動作確認
-
-### (4) Github Pagesで動かす
-ローカルリポジトリをarchitectフォルダへ引っ越して、Githubへpushする。<br>
-```
-cp -r /path/to/original/.git ./
-git add .
-git commit -m "Theme updated"
-git push origin main
-```
-<https://account-name.github.io/> で動作確認
-
-## 3.2 カスタムドメイン設定
-`yourdomain.com` のようなカスタムドメインでアクセスできるようにする。<br>
-<https://yourdomain.com><br>
-<https://www.yourdomain.com><br>
-どちらでもアクセスできるようになる。
-
-### (1) まずDNSレコードを設定する
-ドメインレジストラのDNSサービスなどでDNSレコードを設定する。
-- `yourdomain.com` の Aレコード<br>
-- `www.yourdomain.com` の CNAMEレコード<br>
-
-設定する内容は以下リンク先を参照<br>
-<https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain>
-
-### (2) Pagesの設定画面でカスタムドメインを登録
-Custom domain のところに www.yourdomain.com を設定<br>
-これで yourdomain.com と www.yourdomain.com の両方アクセスできるようになる。<br>
-Enforce HTTPS にチェックを入れると、Let's Encryptで証明書を発行してHTTPSアクセスができるようになる。<br>
-
-### 参考リンク
-<https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll><br>
-<https://jekyllrb.com/docs/themes/><br>
+# 3. Github Pagesサイトを更新する
+ローカル環境で作成したMarkdownファイル(.md)をリモートリポジトリにPushすると、自動的にHTMLファイルが生成されてブラウザでアクセスできるようになる。<br>

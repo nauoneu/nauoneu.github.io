@@ -9,18 +9,18 @@ Github Pagesのデフォルト状態だと使いづらいので、いくつか�
 ・Jekyll Themeの変更<br>
 ・カスタムドメインを設定<br>
 
-- [1 Themeを変更](#1-themeを変更)
+- [1. Themeを変更](#1-themeを変更)
   - [(1) Architect公式リポジトリからclone](#1-architect公式リポジトリからclone)
   - [(2) ローカルでGemfileを編集](#2-ローカルでgemfileを編集)
   - [(3) ローカルで動かしてみる](#3-ローカルで動かしてみる)
   - [(4) Github Pagesで動かす](#4-github-pagesで動かす)
-- [2 カスタムドメイン設定](#2-カスタムドメイン設定)
+- [2. カスタムドメイン設定](#2-カスタムドメイン設定)
   - [(1) まずDNSレコードを設定する](#1-まずdnsレコードを設定する)
   - [(2) Pagesの設定画面でカスタムドメインを登録](#2-pagesの設定画面でカスタムドメインを登録)
   - [参考リンク](#参考リンク)
 
 
-# 1 Themeを変更
+# 1. Themeを変更
 Github Pagesで利用可能なThemeは下記ページにリストされている。<br>
 <https://pages.github.com/themes/><br>
 選択肢が少ないが、比較的ページの構成がよさげだった `Architect` を入れてみる。<br>
@@ -68,7 +68,7 @@ git push origin main
 ```
 <https://account-name.github.io/> で動作確認
 
-# 2 カスタムドメイン設定
+# 2. カスタムドメイン設定
 `yourdomain.com` のようなカスタムドメインでアクセスできるようにする。<br>
 <https://yourdomain.com><br>
 <https://www.yourdomain.com><br>
