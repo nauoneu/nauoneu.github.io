@@ -9,3 +9,5 @@ title: Index
 
 # Github Pages
 - [Github PagesでBlogサイトをつくる](./github-pages-setup)
+- [Github Pagesのカスタマイズ](./github-pages-customize)
+
