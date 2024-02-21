@@ -13,33 +13,34 @@ MSのサービスなので開発はVS Code前提となる。
 前提条件として [**Python開発環境の基本設定**](./python-devenv-windows) を先に済ませておく。<br>
 
 
-- [開発環境の概要](#開発環境の概要)
-- [Azurite セットアップ](#azurite-セットアップ)
-  - [\[WSL\] 必要なパッケージをインストール](#wsl-必要なパッケージをインストール)
-  - [\[WSL\] Azuriteを動かす](#wsl-azuriteを動かす)
-  - [接続テスト](#接続テスト)
-- [VS Codeセットアップ](#vs-codeセットアップ)
-  - [Extensionをインストール](#extensionをインストール)
-  - [Function Appのプロジェクトを作成](#function-appのプロジェクトを作成)
-- [開発プロジェクトの環境について](#開発プロジェクトの環境について)
-  - [プロジェクトごとにフォルダ(環境)が作成される](#プロジェクトごとにフォルダ環境が作成される)
-  - [.vscodeサブフォルダの主なファイル](#vscodeサブフォルダの主なファイル)
-  - [Blobストレージの使い方（ローカル）](#blobストレージの使い方ローカル)
-  - [Blobストレージの使い方（Azure）](#blobストレージの使い方azure)
-  - [Debian 12でAzure Functions Core Toolsを使うための設定](#debian-12でazure-functions-core-toolsを使うための設定)
-- [その他](#その他)
-  - [プロジェクトを作り直したいとき](#プロジェクトを作り直したいとき)
-  - [テストツール](#テストツール)
-  - [セキュリティ](#セキュリティ)
-  - [difflib](#difflib)
-  - [Email](#email)
-    - [SendGrid](#sendgrid)
-    - [Azure Communcation Service](#azure-communcation-service)
-    - [SendGrid 関連](#sendgrid-関連)
-  - [プロジェクト作成時に生成されるサンプルコード](#プロジェクト作成時に生成されるサンプルコード)
+- [1. 開発環境の概要](#1-開発環境の概要)
+- [2. Azurite セットアップ](#2-azurite-セットアップ)
+  - [2.1. \[WSL\] 必要なパッケージをインストール](#21-wsl-必要なパッケージをインストール)
+  - [2.2. \[WSL\] Azuriteを動かす](#22-wsl-azuriteを動かす)
+  - [2.3. 接続テスト](#23-接続テスト)
+- [3. VS Codeセットアップ](#3-vs-codeセットアップ)
+  - [3.1. Extensionをインストール](#31-extensionをインストール)
+  - [3.2. Function Appのプロジェクトを作成](#32-function-appのプロジェクトを作成)
+- [4. 開発プロジェクトの環境について](#4-開発プロジェクトの環境について)
+  - [4.1. プロジェクトごとにフォルダ(環境)が作成される](#41-プロジェクトごとにフォルダ環境が作成される)
+  - [4.2. .vscodeサブフォルダの主なファイル](#42-vscodeサブフォルダの主なファイル)
+  - [4.3. Blobストレージの使い方（ローカル）](#43-blobストレージの使い方ローカル)
+  - [4.4. Blobストレージの使い方（Azure）](#44-blobストレージの使い方azure)
+  - [4.5. Debian 12でAzure Functions Core Toolsを使うための設定](#45-debian-12でazure-functions-core-toolsを使うための設定)
+- [5. その他](#5-その他)
+  - [5.1. プロジェクトを作り直したいとき](#51-プロジェクトを作り直したいとき)
+  - [5.2. テストツール](#52-テストツール)
+  - [5.3. セキュリティ](#53-セキュリティ)
+  - [5.4. difflib](#54-difflib)
+  - [5.5. Email](#55-email)
+    - [5.5.1. SendGrid](#551-sendgrid)
+      - [5.5.1.1. Azure Functions における SendGrid のバインディング](#5511-azure-functions-における-sendgrid-のバインディング)
+      - [5.5.1.2. モジュールの読み込み](#5512-モジュールの読み込み)
+    - [5.5.2. Azure Communcation Service](#552-azure-communcation-service)
+  - [5.6. プロジェクト作成時に生成されるサンプルコード](#56-プロジェクト作成時に生成されるサンプルコード)
 
 
-# 開発環境の概要
+# 1. 開発環境の概要
 開発環境：<br>
 - Windows10/11, WSL2
 - VS Code (WSL Extension, Azure Functions Extension & Python Extension)
@@ -56,38 +57,38 @@ MSのサービスなので開発はVS Code前提となる。
 - [Visual Studio Code を使用して Azure Functions を開発する](https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-develop-vs-code?tabs=node-v3%2Cpython-v2%2Cisolated-process&pivots=programming-language-python)
 - [Pythonで記述するAzure FunctionsのV2 modelを試してみる](https://zenn.dev/choshicure/articles/364875750f8888)
 
-# Azurite セットアップ
+# 2. Azurite セットアップ
 
 <!--
 ## (いらないかも)Azure Functions Core Toolsをインストール
 https://github.com/Azure/azure-functions-core-tools?tab=readme-ov-file#installing
 -->
 
-## [WSL] 必要なパッケージをインストール
+## 2.1. [WSL] 必要なパッケージをインストール
 ```
 sudo apt-get install npm
 sudo npm install -g azurite
 sudo npm install -g azure-functions-core-tools@4
 ```
 
-## [WSL] Azuriteを動かす
+## 2.2. [WSL] Azuriteを動かす
 ```
 mkdir azurite
 azurite --silent --location /path/to/folder --debug /path/to/folder/debug.log
 ```
 
-## 接続テスト
+## 2.3. 接続テスト
 https://azure.microsoft.com/en-us/products/storage/storage-explorer/
 
 
-# VS Codeセットアップ
+# 3. VS Codeセットアップ
 
-## Extensionをインストール
+## 3.1. Extensionをインストール
 - `CTRL + SHIFT + P` でコマンドパレットを開いて `Connect to WSL` を実行<br>
 - `CTRL + SHIFT + X` でExtensionを開いて `Azure Functions` をインストール<br>
 (Azure ResourcesとAzure Accountも一緒にインストールされる)
 
-## Function Appのプロジェクトを作成
+## 3.2. Function Appのプロジェクトを作成
 Terminal > New TerminalでWSL bashを開いてプロジェクトフォルダを作成
 ```
 mkdir funcapp01
@@ -151,14 +152,14 @@ Hello, test. This HTTP triggered function executed successfully.
   Select dependecies: `requirements.txt`<br>
 - 仮想環境(venv)が作成されて、これ以降このワークスペースでTerminalを開くと自動的にvenvが有効になる<br>
 
-# 開発プロジェクトの環境について
-## プロジェクトごとにフォルダ(環境)が作成される
+# 4. 開発プロジェクトの環境について
+## 4.1. プロジェクトごとにフォルダ(環境)が作成される
 Azure Functions Extensionでフォルダを指定してNew Projectを作成すると、<br>
 - ウィザードでPython Interpreterを指定してPython仮想環境(.venvサブフォルダ)が作成される
 - ウィザードで入力した情報でプロジェクト環境設定(.vscodeサブフォルダ)が作成される
 - Function Appファイル (function_app.py, host.json, local.settings.json, requirements.txt) が作成される
 
-## .vscodeサブフォルダの主なファイル
+## 4.2. .vscodeサブフォルダの主なファイル
 - settings.json -> Languate, LanguageModel, venvフォルダなど
 - tasks.json -> デバッグ実行時に自動的に実行されるタスク
 
@@ -206,7 +207,7 @@ Azure Functions Extensionでフォルダを指定してNew Projectを作成す�
 }
 ```
 
-## Blobストレージの使い方（ローカル）
+## 4.3. Blobストレージの使い方（ローカル）
 ローカル(Azurite)でエミュレートする場合とAzureに接続する場合でStorage Connectionパラメータが異なるので、それを環境変数で吸収している。<br>
 以下ローカル(Arurite)の場合の例。
 
@@ -242,7 +243,7 @@ def http_trigger(req: func.HttpRequest, inputblob: str, outputblob: func.Out[str
 ...
 ```
 
-## Blobストレージの使い方（Azure）
+## 4.4. Blobストレージの使い方（Azure）
 Function App内の `Configuration` > `Application Setting` で環境変数を設定する。
 
 <https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-bindings-storage-blob-output?tabs=python-v2%2Cisolated-process%2Cnodejs-v4&pivots=programming-language-python><br>
@@ -253,7 +254,7 @@ Function App内の `Configuration` > `Application Setting` で環境変数を設
 `AzureWebJobsStorageConnection`<br>
 `StorageConnection`
 
-## Debian 12でAzure Functions Core Toolsを使うための設定
+## 4.5. Debian 12でAzure Functions Core Toolsを使うための設定
 azure-functions-core-tools のDebianパッケージがまだDebian11までしか対応していないので(as of Feb 2024)、apt lineを編集する必要がある。<br>
 <https://github.com/Azure/azure-functions-core-tools/issues/3431>
 ```
@@ -266,58 +267,35 @@ in:
 /etc/apt/sources.list.d/dotnetdev.list
 ```
 
-# その他
-## プロジェクトを作り直したいとき
+# 5. その他
+## 5.1. プロジェクトを作り直したいとき
 VS Codeを終了＞フォルダを削除＞VS Codeを起動
 
-## テストツール
+## 5.2. テストツール
 APIDOG<br>
 <https://apidog.com/jp/blog/http-request-body/>
 
-## セキュリティ
+## 5.3. セキュリティ
 Azure App Service のアクセス制限を設定する<br>
 <https://learn.microsoft.com/ja-jp/azure/app-service/app-service-ip-restrictions?tabs=azurecli>
 
-## difflib
+## 5.4. difflib
 difflibで文字列の差分比較をする【Python】<br>
 <https://hmjp.net/archive2019/blog/basic-python-difflib/>
 
-## Email
-### SendGrid
-Azure Functions における SendGrid のバインディング<br>
+## 5.5. Email
+Function Appからメールを送信したい場合。<br>
+SendGridという外部サービスがよく使われているようだが、Azure Communication Serviceというのも使えるらしい。<br>
+SendGridの無償利用枠は1日あたり100通に制限されている。
+
+### 5.5.1. SendGrid
+<https://sendgrid.com/>
+
+#### 5.5.1.1. Azure Functions における SendGrid のバインディング<br>
 <https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-bindings-sendgrid?tabs=isolated-process%2Cfunctionsv2&pivots=programming-language-python>
 
-### Azure Communcation Service
-Quickstart: How to send an email using Azure Communication Service<br>
-<https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/email/send-email?tabs=windows%2Cconnection-string&pivots=platform-azportal><br>
-Python 用 Azure Communication Email クライアント ライブラリ - バージョン 1.0.0<br>
-<https://learn.microsoft.com/ja-jp/python/api/overview/azure/communication-email-readme?view=azure-python>
-
-### SendGrid 関連
-<https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-host-json><br>
-host.json:
-```
-{
-  "version": "2.0",
-  "logging": {
-    "applicationInsights": {
-      "samplingSettings": {
-        "isEnabled": true,
-        "excludedTypes": "Request"
-      }
-    }
-  },
-  "extensionBundle": {
-    "id": "Microsoft.Azure.Functions.ExtensionBundle",
-    "version": "[3.*, 4.0.0)"
-  },
-  "extensions": {
-        "sendGrid": {
-            "from": "Azure Functions <foo@abc.com>"
-        }
-  }
-}
-```
+#### 5.5.1.2. モジュールの読み込み
+実行するときにsendgridモジュールを読み込むようにする。<br>
 
 requirements.txt:
 ```
@@ -330,7 +308,13 @@ azure-storage-blob
 sendgrid
 ```
 
-## プロジェクト作成時に生成されるサンプルコード
+### 5.5.2. Azure Communcation Service
+Quickstart: How to send an email using Azure Communication Service<br>
+<https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/email/send-email?tabs=windows%2Cconnection-string&pivots=platform-azportal><br>
+Python 用 Azure Communication Email クライアント ライブラリ - バージョン 1.0.0<br>
+<https://learn.microsoft.com/ja-jp/python/api/overview/azure/communication-email-readme?view=azure-python>
+
+## 5.6. プロジェクト作成時に生成されるサンプルコード
 まずはここから。
 ```
 import azure.functions as func
