@@ -4,8 +4,8 @@ title: Github Pages
 
 <!-- omit in toc -->
 # Github PagesでBlogサイトを作る
-GithubにはPagesというWebサイトを公開する機能があり、GithubにアップしたHTMLファイルをWebサイトとして表示することができる。<br>
-静的サイトなのでアクセス数の多いページを表示させるとかタグでIndexを生成するとかはできないが、個人用のBlogサイトとしては十分すぎる機能が無料で利用できる。<br>
+GithubにはPagesという機能があり、GithubにアップしたHTMLファイルをWebサイトとして公開することができる。<br>
+静的サイトなのでアクセス数の多いページを表示させるとかタグでIndexを生成するとかはできないが、個人用のBlogサイトとしては十分な機能が無料で利用できる。<br>
 
 またGithub PagesではJekyllという静的サイトジェネレーターを使えるので、Markdownで書いたドキュメントをGithubリポジトリにアップすると自動的にHTMLに変換してアクセスできるようにしてくれる。<br>
 

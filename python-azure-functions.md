@@ -38,8 +38,8 @@ MSのサービスなので開発はVS Code前提となる。
       - [5.5.1.2. モジュールの読み込み](#5512-モジュールの読み込み)
     - [5.5.2. Azure Communcation Service](#552-azure-communcation-service)
   - [5.6. プロジェクト作成時に生成されるサンプルコード](#56-プロジェクト作成時に生成されるサンプルコード)
-  - [トラブルシュート](#トラブルシュート)
-    - [Azure PortalでFunctionを実行してログを確認する](#azure-portalでfunctionを実行してログを確認する)
+  - [5.7. トラブルシュート](#57-トラブルシュート)
+    - [5.7.1. Azure PortalでFunctionを実行してログを確認する](#571-azure-portalでfunctionを実行してログを確認する)
 
 
 # 1. 開発環境の概要
@@ -347,10 +347,10 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
         )
 ```
 
-## トラブルシュート
+## 5.7. トラブルシュート
 ローカルで動いているものをAzureにデプロイしてうまく動かない場合のトラブルシュート方法。<br>
 
-### Azure PortalでFunctionを実行してログを確認する
+### 5.7.1. Azure PortalでFunctionを実行してログを確認する
 Function AppのOverviewから、対象のFunctionのMonitorリンクをクリックする。(下図の赤枠部分)
 ![Alt text](./images/azure-functions-s.png)
 
