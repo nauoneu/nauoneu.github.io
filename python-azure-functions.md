@@ -3,7 +3,7 @@ title: Python
 ---
 
 <!-- omit in toc -->
-# Azure Function App でコードを実行する
+# Azure Function App でコードを動かす
 
 Azure Function Appはサーバーレスでコードを動かすことができるサービスで、AWSでいうところのLambda。<br>
 簡単なAPIとかシンプルなWebサービスを実装したりするのに使えそうな代物である。<br>
@@ -38,6 +38,8 @@ MSのサービスなので開発はVS Code前提となる。
       - [5.5.1.2. モジュールの読み込み](#5512-モジュールの読み込み)
     - [5.5.2. Azure Communcation Service](#552-azure-communcation-service)
   - [5.6. プロジェクト作成時に生成されるサンプルコード](#56-プロジェクト作成時に生成されるサンプルコード)
+  - [トラブルシュート](#トラブルシュート)
+    - [Azure PortalでFunctionを実行してログを確認する](#azure-portalでfunctionを実行してログを確認する)
 
 
 # 1. 開発環境の概要
@@ -344,3 +346,27 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
              status_code=200
         )
 ```
+
+## トラブルシュート
+ローカルで動いているものをAzureにデプロイしてうまく動かない場合のトラブルシュート方法。<br>
+
+### Azure PortalでFunctionを実行してログを確認する
+Function AppのOverviewから、対象のFunctionのMonitorリンクをクリックする。(下図の赤枠部分)
+![Alt text](./images/azure-functions-s.png)
+
+Code＋TestからTest/Runを選択してFunctionを実行して動作を確認したいが、CORSのエラーが出て実行できない。
+![Alt text](./images/azure-functions-2-s.png)
+
+なのでCORSでportal.azure.comを設定する。
+![Alt text](./images/azure-functions-3-s.png)
+
+そうするとAzure PortalからHTTPトリガーでコードを実行できるようになる。
+![Alt text](./images/azure-functions-4-s.png)
+
+HTTPメソッド、パラメータなど設定してリクエスト実行。<br>
+左下のウィンドウにログが表示される。
+![Alt text](./images/azure-functions-5-s.png)
+
+実行時の出力は右下に表示される。
+![Alt text](./images/azure-functions-6-s.png)
+
