@@ -12,7 +12,7 @@ PythonインタプリタはWindows用のものもありますが、ここではW
   - [1.1. WSL有効化](#11-wsl有効化)
   - [1.2. Debianインストール](#12-debianインストール)
   - [1.3. パッケージ更新](#13-パッケージ更新)
-  - [1.4. (Optional) homeディレクトリ変更](#14-optional-homeディレクトリ変更)
+  - [1.4. (Optional) Windowsフォルダをリンクする](#14-optional-windowsフォルダをリンクする)
   - [1.5. 日本語化](#15-日本語化)
   - [1.6. (Optional) WSL2へアップグレード](#16-optional-wsl2へアップグレード)
   - [1.7. Pythonインストール](#17-pythonインストール)
@@ -69,23 +69,9 @@ C:\Windows\System32>wsl --install -d Debian
 $ sudo apt-get update && sudo apt-get upgrade -y
 ```
 
-## 1.4. (Optional) homeディレクトリ変更
-Windowsファイルシステムからアクセスしやすくなるようにhomeディレクトリを変更する。<br>
-デフォルトでは `/mnt/c/Users/username` だが、これを `/mnt/c/home/username` に変更する。<br>
-1. ディレクトリ作成
-```
-$ mkdir -p /mnt/c/home/username
-```
-2. ファイルをコピー
-```
-$ cp -r /home/username /mnt/c/home/username
-```
-3. passwdファイルを編集
-```
-$ sudo vi /etc/passwd
-username:x:1000:1000:,,,:/mnt/c/home/username 
-```
-4. おまじない
+## 1.4. (Optional) Windowsフォルダをリンクする
+WSLのシェルからWindowsファイルシステムへファイルを書き込めるようにする。<br>
+1. おまじない
 ```
 $ sudo vi /etc/wsl.conf
 [automount]
@@ -94,7 +80,11 @@ root = /mnt/
 options = "metadata,umask=22,fmask=11"
 mountFsTab = true
 ```
-5. PCを再起動
+2. シンボリックリンク
+```
+$ ln -s /mnt/c/Users/user ./user
+```
+3. PCを再起動
 
 ## 1.5. 日本語化
 ```
