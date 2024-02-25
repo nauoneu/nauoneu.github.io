@@ -3,10 +3,10 @@ title: Github Pages
 ---
 
 <!-- omit in toc -->
-# Github PagesでJekyllサイトを作る
+# Github PagesでWebサイトを作る
 GithubにはPagesという機能があり、Githubリポジトリ上のファイルをWebサイトとして公開することができる。<br>
 
-また、標準でJekyllという静的サイトジェネレーターが動いているので、Markdownで書いたドキュメントをGithubリポジトリにアップすると自動的にHTMLに変換してアクセスできるようにしてくれる。<br>
+標準でJekyllという静的サイトジェネレーターが動いているので、Markdownで書いたドキュメントをGithubリポジトリにアップすると自動的にHTMLに変換してアクセスできるようにしてくれる。<br>
 
 MarkdownとGitの仕組みを組み合わせてドキュメントのメンテナンスを効率的に行えるので、無料で利用できる個人用のBlogサービスとしては大変優れている。<br>
 

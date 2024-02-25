@@ -8,6 +8,6 @@ title: Index
 - [Azure Function App でコードを動かす](./python-azure-functions)
 
 # Github Pages
-- [Github PagesでJekyllサイトを作る](./github-pages-setup)
+- [Github PagesでWebサイトを作る](./github-pages-setup)
 - [Jekyllのカスタマイズ](./github-pages-jekyll-customize)
 
