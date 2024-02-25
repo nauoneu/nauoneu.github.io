@@ -3,8 +3,8 @@ title: Github Pages
 ---
 
 <!-- omit in toc -->
-# Github Pagesのカスタマイズ
-Github Pagesのデフォルト状態だと使いづらいので、いくつかのカスタマイズを加える。<br>
+# Jekyllのカスタマイズ
+Jekyllのデフォルト状態だと見栄えがいまいちなので、いくつかのカスタマイズを加える。<br>
 以下のあたりを設定するだけで大幅に見栄えがよくなる。<br>
 ・Jekyll Themeの変更<br>
 ・カスタムドメインを設定<br>
@@ -41,7 +41,7 @@ $ cd architect
 ```
 
 ## (2) ローカルでGemfileを編集
-Gemfileに以下の行を追加(デフォルトのminimaで生成されたGemfileから抜き出したもの)
+Gemfileに以下の行を追加(minimaのGemfileから抜き出したもの)
 ```
 gem "github-pages", "~> 229", group: :jekyll_plugins
 group :jekyll_plugins do
