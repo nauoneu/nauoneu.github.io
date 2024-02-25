@@ -3,13 +3,12 @@ title: Github Pages
 ---
 
 <!-- omit in toc -->
-# Github PagesでBlogサイトを作る
-GithubにはPagesという機能があり、GithubにアップしたHTMLファイルをWebサイトとして公開することができる。<br>
-静的サイトなのでアクセス数の多いページを表示させるとかタグでIndexを生成するとかはできないが、個人用のBlogサイトとしては十分な機能が無料で利用できる。<br>
+# Github PagesでJekyllサイトを作る
+GithubにはPagesという機能があり、Githubリポジトリ上のファイルをWebサイトとして公開することができる。<br>
 
-またGithub PagesではJekyllという静的サイトジェネレーターを使えるので、Markdownで書いたドキュメントをGithubリポジトリにアップすると自動的にHTMLに変換してアクセスできるようにしてくれる。<br>
+また、Jekyllという静的サイトジェネレーターをサポートしているので、Markdownで書いたドキュメントをGithubリポジトリにアップすると自動的にHTMLに変換してアクセスできるようにしてくれる。<br>
 
-MarkdownとGitの仕組みを組み合わせてドキュメントのメンテナンスを効率的に行えるので、無料で利用できる個人用のドキュメントアーカイブとしては大変便利なサービスである。<br>
+MarkdownとGitの仕組みを組み合わせてドキュメントのメンテナンスを効率的に行えるので、無料で利用できる個人用のBlogサービスとしては大変優れている。<br>
 
 ここではまずGithub PagesでJekyllを使った静的サイトが動くようにするまでの手順をまとめる。<br>
 
@@ -34,23 +33,28 @@ MarkdownとGitの仕組みを組み合わせてドキュメントのメンテナ
 
 ## 1.2 リポジトリを作る
 Githubへログインしてリポジトリを新規作成する。<br>
-PagesでJekyllを使う場合は以下のようなネーミングルールで作成しないとダメ。<br>
+リポジトリ名は以下のようなネーミングルールで作成する。<br>
 - リポジトリ名: `account-name.github.io`<br>
 
-次にリポジトリの `Settings > Pages` からPagesを有効にする。
-- Source: Deploy from a Branch
-- Branch: main
+Pagesはデフォルトで有効になっている。<br>
+リポジトリの `Settings > Pages` で設定の変更ができる。<br>
+カスタムドメインの設定はここで実施する。<br>
 
-これだけで `https://account-name.github.io/` で静的Blogサイトが作られる。<br>
-ここにHTMLファイルを作りこんでいくこともできるが、Jekyllを使ってMarkdownで記事を書いていくのが楽でいい。<br>
-ということでここからJekyllを使えるように設定していく。
+リポジトリを作るだけで `https://account-name.github.io/` でアクセスできるようになる。作成直後で `README.md` しかない状態だとこのように表示される。<br>
+![Default Page](./images/github-pages-setup-1.png)
 
-まだコンテンツを何もアップロードしていないので、この時点で上記URLにアクセスしても 404 File not found となる。
+もともとGithubではMarkdownを整形して表示してくれるのだが、それと同じ体裁でWebページとして表示してくれる。
+
+`index.md` を作ると `README.md` に代わってそれが表示されるようになる。`index.md` の中でほかのMarkdownファイルにリンクを張っていくだけでもシンプルなBlogサイトみたいな使い方ができる。
+
+だがそれだけではもったいないので、静的サイトジェネレーターを使って本格的なWebサイトとして作りこんでいくことにする。
+
+Github Pagesで公式にサポートしていると言っている静的サイトジェネレーターがJekyllで、ガイドなども充実しているのでまずはJekyllでサイトを作っていくことにする。
 
 以下が公式のクイックスタートガイド。基本的にこれに沿って作業していく。<br>
 <https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll>
 
-以下はHexo(Js)で設定した例だがイメージをつかむのに参考になる。<br>
+ちなみにGithub PagesではJavaScriptをサポートしているので、JavaScriptベースの静的サイトジェネレーターも使える。<br>
 Hexoの場合は上記のリポジトリ名ルールでなくても動くみたい。<br>
 <https://www.bedroomcomputing.com/2020/08/2020-0815-engineer-static-site-gen-blog/><br>
 <https://www.bedroomcomputing.com/2020/11/2020-1123-hexo-github/>
@@ -76,8 +80,9 @@ $ git pull origin main
 <https://jekyllrb.com/docs/><br>
 <https://jekyllrb.com/docs/installation/><br>
 <https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll><br>
-ここらを参照して設定。<br>
-一連の作業が無事終わると、Jekyllにデフォルトで入っているminimaというThemeでサイトが起動する。
+基本的にはこのあたりを参照して設定する。<br>
+一連の作業が無事終わると、Jekyllにデフォルトで入っているminimaというThemeでサイトが起動する。<br>
+以降が手順詳細。
 
 ### (1) GEMの保存先を設定
 gemはRubyのパッケージ（ライブラリ）管理の仕組みで、Pythonでいうところのpip。<br>
