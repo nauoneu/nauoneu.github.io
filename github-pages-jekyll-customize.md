@@ -21,7 +21,7 @@ Jekyllのデフォルト状態だと見栄えがいまいちなので、いく�
 
 
 # 1. Themeを変更
-Github Pagesで利用可能なThemeは下記ページにリストされている。<br>
+Github Pagesで利用可能なJekyll Themeは下記ページにリストされている。<br>
 <https://pages.github.com/themes/><br>
 選択肢が少ないが、比較的ページの構成がよさげだった `Architect` を入れてみる。<br>
 <https://github.com/pages-themes/architect><br>
