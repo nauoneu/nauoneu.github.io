@@ -10,4 +10,3 @@ title: Index
 # Github Pages
 - [Github PagesでWebサイトを作る](./github-pages-setup)
 - [Jekyllのカスタマイズ](./github-pages-jekyll-customize)
-
