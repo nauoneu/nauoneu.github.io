@@ -1,6 +1,6 @@
 @import "normalize";
 @import "rouge-github";
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=M+PLUS+Rounded+1c&family=Noto+Sans+JP:wght@100..900&family=Zen+Kaku+Gothic+Antique&family=Zen+Kaku+Gothic+New');
 /* @import url('https://fonts.googleapis.com/css?family=Architects+Daughter'); */
 
 /* LAYOUT STYLES */
@@ -199,11 +199,13 @@ form {
   color: #474747;
   text-indent: 6px;
   letter-spacing: -1px;
+  border-bottom: 2px solid black;
 }
 
 #main-content h1:before {
   //padding-right: 0.3em;
   //margin-left: -0.9em;
+  margin-left: -5px;
   color: #000000;
   content: "▌";
 }
@@ -216,11 +218,12 @@ form {
   font-weight: bold;
   color: #474747;
   text-indent: 4px;
+  border-bottom: 2px solid black;
 }
 #main-content h2:before {
   //padding-right: 0.3em;
   //margin-left: -1.5em;
-  //margin-left: -0.9em;
+  margin-left: -5px;
   content: "▌";
   color: #000000;
 }
@@ -233,12 +236,13 @@ form {
   font-weight: bold;
   color: #474747;
   text-indent: 3px;
+  border-bottom: 2px solid black;
 }
 
 #main-content h3:before {
   //padding-right: 0.3em;
   //margin-left: -2em;
-  //margin-left: -0.9em;
+  margin-left: -5px;
   content: "▌";
   color: #000000;
 }
@@ -250,12 +254,13 @@ form {
   font-weight: bold;
   color: #474747;
   text-indent: 3px;
+  border-bottom: 2px solid black;
 }
 
 h4:before {
   //padding-right: 0.3em;
   //margin-left: -2.8em;
-  //margin-left: -0.9em;
+  margin-left: -5px;
   content: "▌";
   color: #000000;
 }
@@ -266,11 +271,12 @@ h4:before {
   font-size: 14px;
   color: #474747;
   text-indent: 3px;
+  border-bottom: 2px solid black;
 }
 h5:before {
   //padding-right: 0.3em;
   //margin-left: -3.2em;
-  //margin-left: -0.9em;
+  margin-left: -5px;
   content: "▌";
   color: #000000;
 }
@@ -281,11 +287,12 @@ h5:before {
   font-size: .8em;
   color: #474747;
   text-indent: 3px;
+  border-bottom: 2px solid black;
 }
 h6:before {
   //padding-right: 0.3em;
   //margin-left: -3.7em;
-  //margin-left: -0.9em;
+  margin-left: -5px;
   content: "▌";
   color: #000000;
 }
