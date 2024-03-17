@@ -1,6 +1,7 @@
 @import "normalize";
 @import "rouge-github";
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=M+PLUS+Rounded+1c&family=Noto+Sans+JP:wght@100..900&family=Zen+Kaku+Gothic+Antique&family=Zen+Kaku+Gothic+New');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900');
+/* @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=M+PLUS+Rounded+1c&family=Noto+Sans+JP:wght@100..900&family=Zen+Kaku+Gothic+Antique&family=Zen+Kaku+Gothic+New'); */
 /* @import url('https://fonts.googleapis.com/css?family=Architects+Daughter'); */
 
 /* LAYOUT STYLES */
@@ -126,12 +127,19 @@ code, pre {
   margin-bottom: 30px;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, 'Noto Sans JP';
   font-size: 15px;
-  color: #000000;
-  background-color: #c7c7c7;
+  /* font-weight: bold; */
+  /* color: #000000; */
+  color: #c60000;
+  /* background-color: #c7c7c7; */
+  background-color: #ffe2e2;
 }
 
 code {
-  padding: 0 4px;
+  /* padding: 0 4px; */
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
   border: none;
 }
 
@@ -146,7 +154,8 @@ pre code {
   padding: 0;
   font-size: 15px;
   overflow: auto;
-  color: #000000;
+  /* color: #000000; */
+  color: #ffffff;
   background-color: transparent;
   border: none;
 }
@@ -254,7 +263,6 @@ form {
   font-weight: bold;
   color: #474747;
   text-indent: 3px;
-  border-bottom: 2px solid black;
 }
 
 h4:before {
@@ -271,7 +279,6 @@ h4:before {
   font-size: 14px;
   color: #474747;
   text-indent: 3px;
-  border-bottom: 2px solid black;
 }
 h5:before {
   //padding-right: 0.3em;
@@ -287,7 +294,6 @@ h5:before {
   font-size: .8em;
   color: #474747;
   text-indent: 3px;
-  border-bottom: 2px solid black;
 }
 h6:before {
   //padding-right: 0.3em;
