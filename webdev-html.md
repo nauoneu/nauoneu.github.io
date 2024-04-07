@@ -3,7 +3,26 @@ layout: default
 title: Web Development
 ---
 
+<!-- omit in toc -->
 # HTML
+
+- [全般](#全般)
+  - [JS Bin](#js-bin)
+  - [Diffツール](#diffツール)
+  - [HTML文法チェック](#html文法チェック)
+  - [VSCodeでインデントを自動で整えるショートカット](#vscodeでインデントを自動で整えるショートカット)
+  - [HTMLタグ要素と属性](#htmlタグ要素と属性)
+  - [id属性とclass属性](#id属性とclass属性)
+  - [最小のHTML文書](#最小のhtml文書)
+- [headパート](#headパート)
+  - [titleとdescription](#titleとdescription)
+  - [OGPの設定例](#ogpの設定例)
+  - [link要素](#link要素)
+- [bodyパート](#bodyパート)
+  - [Webページの構造化](#webページの構造化)
+  - [見出し(h1からh6)の注意点](#見出しh1からh6の注意点)
+  - [テーブル](#テーブル)
+  - [フォーム](#フォーム)
 
 ### 全般
 #### JS Bin

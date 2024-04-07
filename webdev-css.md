@@ -7,6 +7,9 @@ title: Web Development
 # CSS
 
 - [全般](#全般)
+  - [ツール](#ツール)
+  - [参考情報](#参考情報)
+  - [ベースHTML](#ベースhtml)
 - [CSSの書き方](#cssの書き方)
   - [HTMLの各タグ内にstyle属性として適用](#htmlの各タグ内にstyle属性として適用)
   - [head内にstyleとして適用](#head内にstyleとして適用)
@@ -18,34 +21,64 @@ title: Web Development
   - [子孫セレクタ](#子孫セレクタ)
   - [隣接セレクタ](#隣接セレクタ)
   - [特定の属性値をもつ要素のみを指定するセレクタ](#特定の属性値をもつ要素のみを指定するセレクタ)
+  - [CSSファイル内でのセレクタの優先順位](#cssファイル内でのセレクタの優先順位)
 - [疑似クラス](#疑似クラス)
   - [リンクの状態に関するもの](#リンクの状態に関するもの)
   - [条件に基づいた兄弟グループの要素を指定する疑似クラス](#条件に基づいた兄弟グループの要素を指定する疑似クラス)
   - [否定擬似クラス](#否定擬似クラス)
 - [擬似要素](#擬似要素)
-- [プロパティ](#プロパティ)
+- [基本プロパティ](#基本プロパティ)
   - [テキストの色、大きさ、揃え方](#テキストの色大きさ揃え方)
   - [背景色、背景画像](#背景色背景画像)
+  - [色の記法](#色の記法)
   - [線を表示](#線を表示)
   - [リストのスタイル](#リストのスタイル)
   - [ボックスに影を付ける](#ボックスに影を付ける)
+- [レイアウト関連](#レイアウト関連)
+  - [サイズ記法](#サイズ記法)
+    - [パーセント](#パーセント)
+    - [em](#em)
+    - [rem](#rem)
+    - [vw（Viewport Width）](#vwviewport-width)
+    - [備考](#備考)
   - [サイズ指定](#サイズ指定)
+    - [width、height](#widthheight)
+    - [max-width](#max-width)
+    - [calc()関数](#calc関数)
   - [余白](#余白)
-    - [margin - 要素の外側の余白を指定](#margin---要素の外側の余白を指定)
-    - [padding - 要素の内側の余白を指定](#padding---要素の内側の余白を指定)
-  - [display](#display)
+    - [margin - 要素の外側の余白](#margin---要素の外側の余白)
+    - [padding - 要素の内側の余白](#padding---要素の内側の余白)
   - [配置](#配置)
-- [サイズの記法](#サイズの記法)
-  - [パーセント表記](#パーセント表記)
-  - [em表記](#em表記)
-  - [rem表記](#rem表記)
-  - [vw（Viewport Width）表記](#vwviewport-width表記)
-  - [備考](#備考)
-- [色の記法](#色の記法)
-- [CSSファイル内でのセレクタの優先順位](#cssファイル内でのセレクタの優先順位)
+    - [position: static;](#position-static)
+    - [position: relative;](#position-relative)
+    - [position: absolute;](#position-absolute)
+    - [top，left，right，bottom](#topleftrightbottom)
+    - [transform](#transform)
+  - [display](#display)
+    - [display: block](#display-block)
+    - [display: inline](#display-inline)
+    - [display: inline-block](#display-inline-block)
+    - [display: none](#display-none)
+    - [display: flex](#display-flex)
+  - [box-sizing](#box-sizing)
+    - [content-box](#content-box)
+    - [border-box](#border-box)
+  - [ボックスモデル](#ボックスモデル)
+  - [flexbox](#flexbox)
+    - [flexboxでできること](#flexboxでできること)
+    - [flexコンテナとflexアイテム](#flexコンテナとflexアイテム)
+    - [プロパティ](#プロパティ)
+      - [flex-direction](#flex-direction)
+      - [justify-content](#justify-content)
+      - [align-items](#align-items)
+      - [flex-wrap](#flex-wrap)
+      - [order](#order)
+      - [column-gap](#column-gap)
+      - [row-gap](#row-gap)
 
 
 ### 全般
+#### ツール
 [CSSリファレンス](https://www.htmq.com/style/)<br>
 [セレクタ](https://www.htmq.com/css3/#selector)<br>
 [PX to Percent Converter](https://codebeautify.org/px-to-percent-converter)<br>
@@ -53,7 +86,34 @@ title: Web Development
 [カラーコード変換ツール](https://tech-unlimited.com/color.html)
 (16進数、RGB、RGBA)<br>
 [カラーコード変換](https://www.color-site.com/converts#google_vignette)
-(RGB、HSV、HSL、CMK、CMYK)
+(RGB、HSV、HSL、CMK、CMYK)<br>
+[CodePen](https://codepen.io/trending)
+
+#### 参考情報
+[sectionとdiv](https://hiroshinakazato.com/wp/html5_section_or_div/)
+
+#### ベースHTML
+```
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>タイトル</title>
+    <meta name="description" content="ページの説明">
+
+    <!-- CSSリセット -->
+    <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+  <body>
+  </body>
+</html>
+```
 
 ### CSSの書き方
 
@@ -137,6 +197,22 @@ p.highlight {
 }
 ```
 
+複数のclass属性を持った要素に対してデザインを適用する場合
+```
+.highlight {
+  color: red;
+}
+
+.highlight.bold {
+  font-weight: bold;
+}
+```
+
+```
+<p class="highlight bold">見出し</p>
+<p class="highlight">リスト</p>
+```
+
 #### id属性で指定するセレクタ
 id属性で指定する場合は、# を使用します。id属性は、1つのHTMLファイル内で一意（ダブらない）が推奨されていますので、1つのWebページの中で、ただ1つの要素を識別したいときに指定します。
 ```
@@ -201,6 +277,10 @@ a[href="https://example.com"] {
   color: green;
 }
 ```
+
+#### CSSファイル内でのセレクタの優先順位
+- 下に書かれたものほど優先
+- 詳細なセレクタほど優先
 
 ### 疑似クラス
 疑似クラスを使うことで、特定の状態になっている要素にのみデザインを適用できます。
@@ -299,7 +379,8 @@ OUTPUT
 ルートヴィヒ・ヴァン・ベートーヴェン
 ```
 
-### プロパティ
+### 基本プロパティ
+
 #### テキストの色、大きさ、揃え方
 - color
 - font-family
@@ -359,6 +440,14 @@ Example
 }
 ```
 
+#### 色の記法
+英語：red, green, blue, …<br>
+RGB（16進数）：#000000 から #ffffff まで
+RGBA関数：（例）rgba(0,0,0,0)
+
+[詳細度の計算方法(MDM)](https://developer.mozilla.org/ja/docs/Web/CSS/Specificity)
+
+
 #### 線を表示
 div要素に使用<br>
 border<br>
@@ -380,13 +469,49 @@ list-style
 #### ボックスに影を付ける
 box-shadow
 
+### レイアウト関連
+#### サイズ記法
+
+絶対指定 px<br>
+相対指定 %、em、rem、vw<br>
+
+##### パーセント
+親要素に対して相対的なパーセンテージを指定<br>
+htmlタグのスタイルでfont-sizeをパーセント指定した場合は、ブラウザのデフォルトフォントサイズに対するパーセント指定となる。<br>
+ブラウザのデフォルトフォントサイズは標準で16px。
+```
+html {
+    font-size: 62.5%; // 16 x 62.5% = 10px
+}
+```
+
+##### em
+親要素の文字サイズに対しての大きさを指定します。後述するremとの違いは、直近の親要素をもとにした単位という点になります。基本的にはremを使用することが多く、直近の親要素をもとに値を指定したいときにemを使用します。
+
+##### rem
+remは、すべての要素の親（root）であるhtmlセレクタを基準として計算されます。以下のサンプルでは、rem単位を使用してh1要素のフォントサイズを24pxにしています。
+
+##### vw（Viewport Width）
+ブラウザの幅に応じて、要素の大きさを変えたい場合に利用します。
+
+たとえば、ブラウザの幅が1920pxのとき、100vwは1920pxと同じ大きさになります。10vwは192pxとなります。ブラウザの幅が変わると、1vwあたりのpx数も変わります。
+
+これを使うと、画面の幅に応じてフォントサイズや画像の大きさを変えたりできるので、後ほど学ぶレスポンシブデザインで利用されます。
+
+##### 備考
+em, remで相対指定しておくと、root font-sizeを変更したらそれに合わせて全体のフォントサイズが調整されるので、おそらく実環境ではem/rem相対指定が多いのではないか。
+
 #### サイズ指定
-width、height<br>
-max-width<br>
-calc()関数
+
+サイズ指定を相対指定する場合、ブラウザのフォントサイズ(デフォルト16px)が基準になる。<br>
+例えば `max-width: 67.5rem;` と指定されている場合、その領域の最大横幅は `1080px (16px x 67.5)` となる。<br>
+
+##### width、height
+##### max-width
+##### calc()関数
 
 #### 余白
-##### margin - 要素の外側の余白を指定
+##### margin - 要素の外側の余白
 margin ... 上下左右まとめて指定<br>
 margin-top、margin-right、margin-bottom、margin-left ... 上下左右それぞれ指定<br>
 
@@ -395,7 +520,7 @@ margin: (上) (左右) (下);<br>
 margin: (上下) (左右);<br>
 margin: (上下左右);<br>
 
-##### padding - 要素の内側の余白を指定
+##### padding - 要素の内側の余白
 padding ... 上下左右まとめて指定<br>
 padding-top、padding-right、padding-bottom、padding-left ... 上下左右それぞれ指定<br>
 
@@ -404,18 +529,106 @@ padding: (上) (左右) (下);<br>
 padding: (上下) (左右);<br>
 padding: (上下左右);<br>
 
+#### 配置
+positionは、要素がどのように置かれるかを決めるプロパティです。<br>
+positionプロパティの値には初期値の static に加えて relative、absolute、fixed の4つがあります。<br>
+
+##### position: static;
+position プロパティのデフォルト値<br>
+前後のオブジェクトの位置関係を踏まえた配置になる<br>
+top、left など位置指定プロパティが使えず左上から要素を並べていくレイアウト<br>
+自身の下端が次のオブジェクトの基点になる<br>
+
+##### position: relative;
+相対配置<br>
+staticと同様に前後のオブジェクトの位置関係を踏まえた配置<br>
+自身の上端が次のオブジェクトの基点になる<br>
+
+##### position: absolute;
+絶対位置<br>
+top、bottom、left、right などの位置指定を何も指定しない場合、ページ全体の左上が基準になる<br>
+
+divブロックのpositionがrelativeの場合、その子要素(div)のabsolute,fixedの基点になる。<br>
+relative はこの値を指定した要素が子要素 absolute や fixed の基準位置となる。
+そのため、`position: relative;` と `position: absolute;` はセットで使われる。<br>
+
+absoluteかfixedにすると、次のオブジェクトの基点としてdivブロックが考慮されない。<br>
+divブロック自身も他のオブジェクトと関係なく絶対ポジションとして設定した場所に置かれる。
+
+##### top，left，right，bottom
+
+基準位置からの距離を設定。
+
+| top | 下方向 |
+| left | 右方向 |
+| right | 左方向 |
+| bottom | 上方向 |
+
+##### transform
+
+transformはオブジェクトに動きをつけるプロパティ。<br>
+`posision` と `top` `left` と組み合わせてオブジェクトをページ真ん中に持ってくることもできる。
+
+`transform: translate(x軸の距離, y軸の距離);`<br>
+これはオブジェクトをx軸方向、y軸方向にそれぞれ指定した距離だけ移動させる。<br>
+%指定の場合は自身のサイズが基準になる。
+
+カバーページでオブジェクトをページ真ん中に持ってくる場合の記述。
+```
+.cover {
+  position: relative;
+}
+
+.cover-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+```
+
+```
+<section class="cover">
+  <div class="cover-title">
+    <h1 class="cover-catch">キャッチコピー</h1>
+    <a href="./index.html" class="cover-button">ボタン</a>
+  </div>
+  <img src="https://..../cover.jpg" alt="">
+</section>
+```
+
+
+[transform:translate()の使い方](https://webst8.com/blog/css-transform-translate/)
+
 #### display
-ブロックレベル要素
-display: block
-要素は横いっぱいに広がり、次に続く要素は改行します。幅・高さ・余白などの調節が可能です。
+##### display: block
+ブロックレベル要素。<br>
+要素の横幅がブラウザの幅一杯になり、次に続く要素は改行される。<br>
+幅・高さ・余白などの調節が可能。<br>
+見出しや段落など、文章を区切りたいときに使用。
 
-インライン要素
-display: inline
-要素が横に並んでいきます。幅や高さは調節できません。
+デフォルト設定が `display: block;` の要素
+- h1, など見出し要素
+- div
+- section
+- article
+- p
+- ul, ol
+- table
 
-インラインブロック要素
-display: inline-block
-余白や幅、text-alignなどが設定できるブロックレベル要素を、インラインレベル要素のように横へ並べられます。
+##### display: inline
+インライン要素<br>
+要素が横に並ぶ。幅や高さは調節できない。<br>
+文章の一部にスタイルを適用する場合に使用。
+
+デフォルト設定が `display: inline;` の要素
+- span
+- a
+- img
+
+##### display: inline-block
+余白や幅、text-alignなどが設定できるブロックレベル要素を、インラインレベル要素のように横へ並べられる。<br>
 リスト`<li>`を横並びにすることもできる。
 ```
 <ul class="inline-block">
@@ -432,85 +645,112 @@ display: inline-block
 }
 ```
 
+##### display: none
 非表示にする
-display: none
 
+##### display: flex
 Flexboxにする
-display: flex
 
-box-sizing
-box-sizing プロパティは、要素の幅と高さを計算するボックスモデルのルールを変更するために使います。ボックスモデルについては以降のチャプターで解説します。
+#### box-sizing
+##### content-box
+ボックスの幅にpaddingとborderを含まない。<br>
+デフォルト値(box-sizing を指定しない場合はこれが適用される)。
 
-content-box はボックスの幅にpadding（余白）とborder（ボーダー）の幅は含みません。 box-sizing を指定しない場合はこちらが初期値として適用されています。
-border-box はボックスの幅にpadding（余白）とborder（ボーダー）の幅を含みます。
+##### border-box
+ボックスの幅にpaddingとborderを含む。
 
-#### 配置
-position<br>
-positionは、要素がどのように置かれるかを決めるプロパティです。<br>
-positionプロパティの値には初期値の static に加えて relative、absolute、fixed の4つがあります。<br>
+#### ボックスモデル
 
-static<br>
-position プロパティのデフォルト値<br>
-前後のオブジェクトの位置関係を踏まえた配置になる<br>
-top、left など位置指定プロパティが使えず左上から要素を並べていくレイアウト<br>
-自身の下端が次のオブジェクトの基点になる<br>
+ブロックレベル要素をボックス(四角形の領域)として、大きさを指定してレイアウトしていく。<br>
 
-relative<br>
-相対配置<br>
-staticと同様に前後のオブジェクトの位置関係を踏まえた配置<br>
-自身の上端が次のオブジェクトの基点になる<br>
+| CSSプロパティ | ボックスモデルの領域 |
+| ---- | ---- |
+| margin | 外側の余白 |
+| border | 境界線 |
+| padding | 内側の余白 |
+| width | 横の幅 |
+| height | 縦の高さ |
 
-absolute<br>
-絶対位置<br>
-top、bottom、left、right などの位置指定を何も指定しない場合、ページ全体の左上が基準になる<br>
+#### flexbox
 
-divブロックのpositionがrelativeの場合、その子要素(div)のabsolute,fixedの基点になる。<br>
-relative はこの値を指定した要素が子要素 absolute や fixed の基準位置となる。
-そのため、`position: relative;` と `position: absolute;` はセットで使われる。<br>
+「Flexible Box Layout Module」<br>
+いまのWebレイアウトの主流。<br>
+`display: flex;`
 
-absoluteかfixedにすると、次のオブジェクトの基点としてdivブロックが考慮されない。<br>
-divブロック自身も他のオブジェクトと関係なく絶対ポジションとして設定した場所に置かれる。<br>
+##### flexboxでできること
+- 横並び、縦並びの調整（デフォルトは横並び）
+- 並び順の調整（逆順、位置指定）
+- 横の位置指定（左寄せ、右寄せ、中央寄せ、両端揃え、均等配置）
+- 縦の位置指定（高さを自動で揃える、上揃え、下揃え、中央揃え）
+- 折り返して複数行に配置
 
-### サイズの記法
-
-絶対指定 px<br>
-相対指定 %、em、rem、vw<br>
-
-#### パーセント表記
-親要素に対して相対的なパーセンテージを指定<br>
-htmlタグのスタイルでfont-sizeをパーセント指定した場合は、ブラウザのデフォルトフォントサイズに対するパーセント指定となる。<br>
-ブラウザのデフォルトフォントサイズは標準で16px。
+##### flexコンテナとflexアイテム
+親要素(コンテナ)で `display: flex;` を指定し、子要素(アイテム)を配置していく。<br>
+以下は基本的な形（デフォルトは横並び）
 ```
-html {
-    font-size: 62.5%; // 16 x 62.5% = 10px
+<!-- HTML  -->
+  <div class="container">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+  </div>
+
+<!-- CSS  -->
+.container {
+    display: flex;
+}
+.item {
+  width: 20%;
+  height: 80px;
+  padding: 10px;
+  margin: 10px;
+  background: #FFE966;
 }
 ```
 
-#### em表記
-親要素の文字サイズに対しての大きさを指定します。後述するremとの違いは、直近の親要素をもとにした単位という点になります。基本的にはremを使用することが多く、直近の親要素をもとに値を指定したいときにemを使用します。
+##### プロパティ
 
-#### rem表記
-remは、すべての要素の親（root）であるhtmlセレクタを基準として計算されます。以下のサンプルでは、rem単位を使用してh1要素のフォントサイズを24pxにしています。
+###### flex-direction
+横並び、縦並び、正順、逆順
 
-#### vw（Viewport Width）表記
-ブラウザの幅に応じて、要素の大きさを変えたい場合に利用します。
+| row（デフォルト値） | 横並び |
+| row-reverse | 逆向きの横並び |
+| column | 縦並び |
+| column-reverse | 逆向きの縦並び |
 
-たとえば、ブラウザの幅が1920pxのとき、100vwは1920pxと同じ大きさになります。10vwは192pxとなります。ブラウザの幅が変わると、1vwあたりのpx数も変わります。
+###### justify-content
+主軸方向（通常は横方向）のコンテンツの寄せ方
 
-これを使うと、画面の幅に応じてフォントサイズや画像の大きさを変えたりできるので、後ほど学ぶレスポンシブデザインで利用されます。
+| flex-start | 左寄せ |
+| flex-end | 右寄せ |
+| center | 中央寄せ |
+| space-between | 両端揃えの均等配置 |
+| space-around | 余白を均等 |
 
-#### 備考
-em, remで相対指定しておくと、root font-sizeを変更したらそれに合わせて全体のフォントサイズが調整されるので、おそらく実環境ではem/rem相対指定が多いのではないか。
+###### align-items
+交差軸方向（通常は縦方向）のコンテンツの寄せ方<br>
+align-items を指定をしない場合はコンテンツの量によらず、flexアイテムの高さはflexコンテナ内で100%
 
-### 色の記法
-英語：red, green, blue, …<br>
-RGB（16進数）：#000000 から #ffffff まで
-RGBA関数：（例）rgba(0,0,0,0)
+| baseline | ベースライン揃えでコンテンツ量によって高さが変動 |
+| flex-start | 上揃えでコンテンツ量によって高さが変動 |
+| flex-end | 下揃えでコンテンツ量によって高さが変動 |
+| center | 中央揃えでコンテンツ量によって高さが変動 |
+| stretch | コンテンツの量や大きさによらず高さが揃う |
 
-### CSSファイル内でのセレクタの優先順位
-- 下に書かれたものほど優先
-- 詳細なセレクタほど優先
+###### flex-wrap
+flexアイテムの折り返しの有無
 
-[詳細度の計算方法(MDM)](https://developer.mozilla.org/ja/docs/Web/CSS/Specificity)
+| nowrap（デフォルト値） | 折り返し無し |
+| wrap | 折り返し有り |
 
+###### order
+同じflexコンテナに属するflexアイテムの表示順序を指定<br>
+指定した値が小さい順に表示されます (初期値は0)
+
+###### column-gap
+flexアイテムの要素同士に横方向の余白
+
+###### row-gap
+flexアイテムの要素同士に縦方向の余白
 
