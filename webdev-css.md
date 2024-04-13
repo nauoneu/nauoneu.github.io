@@ -17,6 +17,10 @@ title: Web Development
 - [セレクタ](#セレクタ)
   - [要素全体のセレクタ](#要素全体のセレクタ)
   - [class属性で指定するセレクタ](#class属性で指定するセレクタ)
+    - [特定の要素](#特定の要素)
+    - [全ての要素](#全ての要素)
+    - [複数のclass属性を持つ要素](#複数のclass属性を持つ要素)
+    - [class属性の親子関係を持つ要素](#class属性の親子関係を持つ要素)
   - [id属性で指定するセレクタ](#id属性で指定するセレクタ)
   - [子孫セレクタ](#子孫セレクタ)
   - [隣接セレクタ](#隣接セレクタ)
@@ -102,12 +106,16 @@ title: Web Development
     <title>タイトル</title>
     <meta name="description" content="ページの説明">
 
-    <!-- CSSリセット -->
-    <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
+    <!-- リセットCSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <!-- CSS -->
-    <link rel="stylesheet" href="./style.css">
+    <!-- CSS-->
+    <link rel="stylesheet" href="./css/style.css">
 
   </head>
   <body>
@@ -183,6 +191,7 @@ p {
 ```
 
 #### class属性で指定するセレクタ
+##### 特定の要素
 importantというclass属性を持ったp要素にデザインを適用
 ```
 p.highlight {
@@ -190,6 +199,7 @@ p.highlight {
 }
 ```
 
+##### 全ての要素
 同じclass属性を持った全ての要素に対してデザインを適用する場合
 ```
 .highlight {
@@ -197,7 +207,7 @@ p.highlight {
 }
 ```
 
-複数のclass属性を持った要素に対してデザインを適用する場合
+##### 複数のclass属性を持つ要素
 ```
 .highlight {
   color: red;
@@ -211,6 +221,28 @@ p.highlight {
 ```
 <p class="highlight bold">見出し</p>
 <p class="highlight">リスト</p>
+```
+
+##### class属性の親子関係を持つ要素
+```
+<div class=highlight>
+  <div>見出し</div>
+  <div class=list>リスト</div>
+  <div class=list2>リスト2</div>
+</div>
+```
+```
+.highlight {
+  color: green;
+}
+
+.highlight .list {
+  color: red;
+}
+
+.highlight .list2 {
+  color: yellow;
+}
 ```
 
 #### id属性で指定するセレクタ
@@ -575,6 +607,16 @@ transformはオブジェクトに動きをつけるプロパティ。<br>
 
 カバーページでオブジェクトをページ真ん中に持ってくる場合の記述。
 ```
+<!--- HTML --->
+<section class="cover">
+  <div class="cover-title">
+    <h1 class="cover-catch">キャッチコピー</h1>
+    <a href="./index.html" class="cover-button">ボタン</a>
+  </div>
+  <img src="https://..../cover.jpg" alt="">
+</section>
+
+/*--- CSS ---*/
 .cover {
   position: relative;
 }
@@ -586,16 +628,6 @@ transformはオブジェクトに動きをつけるプロパティ。<br>
   transform: translate(-50%,-50%);
   text-align: center;
 }
-```
-
-```
-<section class="cover">
-  <div class="cover-title">
-    <h1 class="cover-catch">キャッチコピー</h1>
-    <a href="./index.html" class="cover-button">ボタン</a>
-  </div>
-  <img src="https://..../cover.jpg" alt="">
-</section>
 ```
 
 
@@ -628,9 +660,10 @@ transformはオブジェクトに動きをつけるプロパティ。<br>
 - img
 
 ##### display: inline-block
-余白や幅、text-alignなどが設定できるブロックレベル要素を、インラインレベル要素のように横へ並べられる。<br>
-リスト`<li>`を横並びにすることもできる。
+余白や幅、text-alignなどが設定できるブロックレベル要素を、インラインレベル要素のように横へ並べる。<br>
+リスト`<li>`を横並びにする時に使う。
 ```
+<!--- HTML --->
 <ul class="inline-block">
   <li><a href="#">TOP</a></li>
   <li><a href="#">ABOUT</a></li>
@@ -638,10 +671,17 @@ transformはオブジェクトに動きをつけるプロパティ。<br>
   <li><a href="#">BLOG</a></li>
   <li><a href="#">CONTACT</a></li>
 </ul>
-```
-```
+
+/*--- CSS ---*/
 .inline-block li {
   display: inline-block;
+  border-radius: 0.8rem;
+  padding: 0.1rem 0.5rem;
+  background-color: black;
+}
+
+.inline-block li a {
+  color: white;
 }
 ```
 
@@ -696,7 +736,7 @@ Flexboxにする
     <div class="item">4</div>
   </div>
 
-<!-- CSS  -->
+/*--- CSS ---*/
 .container {
     display: flex;
 }
