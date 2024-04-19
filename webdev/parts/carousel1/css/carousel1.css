@@ -1,0 +1,109 @@
+/* ベースのスタイル
+------------------------------------------------------------*/
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.6;
+    letter-spacing: .1em;
+    color: #fff;
+    background-color: #071e3d;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+small {
+    font-size: 0.75rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+/* 共通のスタイル
+------------------------------------------------------------*/
+
+section {
+    padding: 3.75rem 0;
+}
+
+/* コンテナ */
+section .container {
+    width: 90%;
+    margin: auto;
+}
+
+/* セクションタイトル */
+section h2 {
+    margin-bottom: 1.25rem;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.5rem;
+    text-align: center;
+    letter-spacing: 0.187rem;
+}
+
+/* セクションテキスト */
+section p {
+    margin-top: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+/* 購入するボタン */
+.button-checkout {
+    position: relative;
+    display: block;
+    width: 13.75rem;
+    padding: 1.25rem 5%;
+    margin: auto;
+    font-size: 1rem;
+    text-align: center;
+    color: #ffffff;
+    border: .0625rem #ffffff solid;
+    background: #0e3466;
+    transition: .3s;
+}
+
+.button-checkout:hover {
+    background: #1c5095;
+    color: #ffffff;
+}
+
+.button-checkout::before {
+    position: absolute;
+    top: 50%;
+    right: 1.125rem;
+    width: 1.75rem;
+    height: 0.5rem;
+    border-top: solid .0625rem;
+    content: "";
+}
+
+.button-checkout::after {
+    position: absolute;
+    top: calc(50% - 0.125rem);
+    right: 0.875rem;
+    width: 1.125rem;
+    height: 1.125rem;
+    border-right: solid .0625rem;
+    content: "";
+    transform: rotate(-45deg) translateY(-50%);
+}
+
+.products-title {
+    display: flex;
+    justify-content: space-between;
+    line-height: 1.875rem;
+}
+
+.products-title h3 {
+    font-size: 1.25rem;
+}
+
+.products-title span {
+    font-size: 0.75rem;
+}
+

@@ -8,6 +8,9 @@ title: Web Development
 
 - [全般](#全般)
   - [ツール](#ツール)
+    - [Coding](#coding)
+    - [Diff](#diff)
+    - [CSS](#css-1)
   - [参考情報](#参考情報)
   - [ベースHTML](#ベースhtml)
 - [CSSの書き方](#cssの書き方)
@@ -83,15 +86,28 @@ title: Web Development
 
 ### 全般
 #### ツール
+##### Coding
+[JS Bin](<https://jsbin.com>)<br>
+[HTML文法チェック](<https://validator.w3.org/#validate_by_input>)
+[CodePen](https://codepen.io/trending)<br>
+
+##### Diff
+[CODE DIFF](https://www.w3docs.com/tools/code-diff/)<br>
+[Diff Checker](https://appdevtools.com/diff-checker)<br>
+[Mergely](https://editor.mergely.com/)<br>
+[difff](https://difff.jp/)
+
+##### CSS
 [CSSリファレンス](https://www.htmq.com/style/)<br>
-[セレクタ](https://www.htmq.com/css3/#selector)<br>
+[セレクタ一覧](https://www.htmq.com/css3/#selector)<br>
+[CSSのセレクタとは？覚えておきたい25種類と書き方](https://saruwakakun.com/html-css/reference/selector)<br>
 [PX to Percent Converter](https://codebeautify.org/px-to-percent-converter)<br>
 [WEB GENERATOR](https://web-generates.com/)<br>
 [カラーコード変換ツール](https://tech-unlimited.com/color.html)
 (16進数、RGB、RGBA)<br>
 [カラーコード変換](https://www.color-site.com/converts#google_vignette)
 (RGB、HSV、HSL、CMK、CMYK)<br>
-[CodePen](https://codepen.io/trending)
+[Bootstrap Icons](https://icons.getbootstrap.jp/)<br>
 
 #### 参考情報
 [sectionとdiv](https://hiroshinakazato.com/wp/html5_section_or_div/)

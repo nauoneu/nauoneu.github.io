@@ -7,10 +7,11 @@ title: Web Development
 # HTML
 
 - [全般](#全般)
-  - [JS Bin](#js-bin)
-  - [Diffツール](#diffツール)
-  - [HTML文法チェック](#html文法チェック)
-  - [VSCodeでインデントを自動で整えるショートカット](#vscodeでインデントを自動で整えるショートカット)
+  - [ツール](#ツール)
+    - [Coding](#coding)
+    - [Diff](#diff)
+    - [HTML](#html-1)
+    - [VSCodeでインデントを自動で整えるショートカット](#vscodeでインデントを自動で整えるショートカット)
   - [HTMLタグ要素と属性](#htmlタグ要素と属性)
   - [id属性とclass属性](#id属性とclass属性)
   - [最小のHTML文書](#最小のhtml文書)
@@ -25,19 +26,22 @@ title: Web Development
   - [フォーム](#フォーム)
 
 ### 全般
-#### JS Bin
-<https://jsbin.com>
+#### ツール
+##### Coding
+[JS Bin](<https://jsbin.com>)<br>
+[HTML文法チェック](<https://validator.w3.org/#validate_by_input>)
+[CodePen](https://codepen.io/trending)<br>
 
-#### Diffツール
+##### Diff
 [CODE DIFF](https://www.w3docs.com/tools/code-diff/)<br>
 [Diff Checker](https://appdevtools.com/diff-checker)<br>
 [Mergely](https://editor.mergely.com/)<br>
 [difff](https://difff.jp/)
 
-#### HTML文法チェック
-<https://validator.w3.org/#validate_by_input>
+##### HTML
+[favicon generator](https://ao-system.net/favicon/)<br>
 
-#### VSCodeでインデントを自動で整えるショートカット
+##### VSCodeでインデントを自動で整えるショートカット
 Shift + Alt + F (Windows)
 
 #### HTMLタグ要素と属性
