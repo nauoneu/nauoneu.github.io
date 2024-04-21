@@ -1,0 +1,82 @@
+@charset "UTF-8";
+/* ページ全体のスタイル
+------------------------------------------ */
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  line-height: 1.75;
+  color: #333;
+}
+a {
+  color: #333;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+li {
+  list-style: none;
+}
+
+/* 部品
+------------------------------------------ */
+
+/* ヘッダー
+------------------------------------------ */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.75rem;
+  padding: 0.812rem 1.25rem 1.187rem;
+  background-color: rgb(238 156 112 / 80%);
+}
+
+.header a {
+  color: white;
+}
+
+/* ロゴ */
+.header-logo {
+  line-height: 1;
+  color: white;
+  font-size: 1.25rem;
+}
+
+.header-logo img {
+  max-width: 16.8125rem;
+  vertical-align: baseline;
+}
+
+
+/* ハンバーガーボタン */
+.hamburger-button {
+  position: fixed;
+  top: 1rem;
+  right: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-button-bar {
+  width: 1.5rem;
+  height: 0.125rem;
+  background-color: #fff;
+}
+
+.hamburger-button-bar:first-child {
+  margin-bottom: 0.5rem;
+}
+
+.hamburger-button-title {
+  font-size: 0.75rem;
+  color: #fff;
+}
