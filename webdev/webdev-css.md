@@ -26,6 +26,7 @@ title: Web Development
     - [class属性の親子関係を持つ要素](#class属性の親子関係を持つ要素)
   - [id属性で指定するセレクタ](#id属性で指定するセレクタ)
   - [子孫セレクタ](#子孫セレクタ)
+  - [子孫セレクタ (直接の子孫だけに適用する場合)](#子孫セレクタ-直接の子孫だけに適用する場合)
   - [隣接セレクタ](#隣接セレクタ)
   - [特定の属性値をもつ要素のみを指定するセレクタ](#特定の属性値をもつ要素のみを指定するセレクタ)
   - [CSSファイル内でのセレクタの優先順位](#cssファイル内でのセレクタの優先順位)
@@ -56,9 +57,10 @@ title: Web Development
     - [margin - 要素の外側の余白](#margin---要素の外側の余白)
     - [padding - 要素の内側の余白](#padding---要素の内側の余白)
   - [配置](#配置)
-    - [position: static;](#position-static)
-    - [position: relative;](#position-relative)
-    - [position: absolute;](#position-absolute)
+    - [position: static](#position-static)
+    - [position: relative](#position-relative)
+    - [position: absolute](#position-absolute)
+    - [position: fixed](#position-fixed)
     - [top，left，right，bottom](#topleftrightbottom)
     - [transform](#transform)
   - [display](#display)
@@ -275,16 +277,37 @@ id属性で指定する場合は、# を使用します。id属性は、1つのH
 以下は`<article></article>`内の`<p>`要素に対してデザインを適用する例
 
 ```
+article p {
+  color: orange;
+}
+```
+
+```
 <p>テキストです</p>
 <article>
   <p>article > pの文章</p>
 </article>
 ```
 
+#### 子孫セレクタ (直接の子孫だけに適用する場合)
+特定の階層構造になっている要素にデザインを適用する場合
+
+以下は`<article></article>`直下の`<p>`要素にデザインを適用する例
+
 ```
-article p {
+article > p {
   color: orange;
 }
+```
+
+```
+<p>テキストです</p>
+<article>
+  <p>article > pの文章</p>
+  <div>
+    <p>article > div > pの文章</p>  <!-- これには適用されない -->
+  </div>
+</article>
 ```
 
 #### 隣接セレクタ
@@ -578,23 +601,30 @@ padding: (上下) (左右);<br>
 padding: (上下左右);<br>
 
 #### 配置
-positionは、要素がどのように置かれるかを決めるプロパティです。<br>
-positionプロパティの値には初期値の static に加えて relative、absolute、fixed の4つがあります。<br>
+positionは、要素がどのように置かれるかを決めるプロパティ。<br>
+positionプロパティの値には初期値の static に加えて relative、absolute、fixed の4つがある。
 
-##### position: static;
-position プロパティのデフォルト値<br>
-前後のオブジェクトの位置関係を踏まえた配置になる<br>
-top、left など位置指定プロパティが使えず左上から要素を並べていくレイアウト<br>
-自身の下端が次のオブジェクトの基点になる<br>
+##### position: static
+- position プロパティのデフォルト値
+- 前のオブジェクトの下に配置
+- top、left など位置指定プロパティが使えず左上から要素を並べるレイアウト 
+- 自身の下端が次のオブジェクトの基点になる
 
-##### position: relative;
-相対配置<br>
-staticと同様に前後のオブジェクトの位置関係を踏まえた配置<br>
-自身の上端が次のオブジェクトの基点になる<br>
+##### position: relative
+- 前のオブジェクトの下に配置
+- 相対的に位置指定(本来位置からtop/left/right/bottomへの距離を指定)
+- 自身の上端が次のオブジェクトの基点になる
 
-##### position: absolute;
-絶対位置<br>
-top、bottom、left、right などの位置指定を何も指定しない場合、ページ全体の左上が基準になる<br>
+##### position: absolute
+- 親divブロック(relative)の基点が自身の基点になる
+- 親divブロック(relative)がない場合はbody(ウィンドウ画面)が基点になる
+- 絶対的な位置指定(top/bottom/left/right で各方向の端からの距離を指定) 
+
+##### position: fixed
+- 常にbody(ウィンドウ画面)が基点になる
+- 絶対的な位置指定(top/bottom/left/right で各方向の端からの距離を指定)
+- 親divブロック(relative)の基点が自身の基点になる
+- スクロールしても移動しない
 
 divブロックのpositionがrelativeの場合、その子要素(div)のabsolute,fixedの基点になる。<br>
 relative はこの値を指定した要素が子要素 absolute や fixed の基準位置となる。

@@ -11,7 +11,7 @@ title: Web Development
 - [JavaScript](./webdev-js)
 
 # [Parts](./webdev/parts/)
-- [ヘッダー(ハンバーガーメニュー)](./webdev/parts/hamburger1/)
+- [ヘッダー(ハンバーガーメニュー)](./parts/hamburger1/)
   - カバー写真がブラウザ画面100%表示
   - ハンバーガーメニューをスライドイン
     - ハンバーガーメニューは .hamburger-menu クラスのスタイル適用
@@ -20,9 +20,9 @@ title: Web Development
     - アニメーションの時間は0.6秒(transition: all 0.6s;)、これはhoverかjavascriptで動かすときに有効な値
     - javascriptで .hamburger-menu-active をON/OFFしている(transform: translateX(0); /* 元の位置に戻す */)
 
-- [ヘッダー(ハンバーガーメニュー2)](./webdev/parts/hamburger2/)
+- [ヘッダー(ハンバーガーメニュー2)](./parts/hamburger2/)
   - ヘッダー上部固定（スクロールしても常に表示, position: sticky;）
   - ハンバーガーメニューフェードイン
 
-- [ヘッダー(ハンバーガーメニュー3)](./webdev/parts/hamburger3/)
+- [ヘッダー(ハンバーガーメニュー3)](./parts/hamburger3/)
 
