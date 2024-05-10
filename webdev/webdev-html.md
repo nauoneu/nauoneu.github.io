@@ -29,7 +29,7 @@ title: Web Development
 #### ツール
 ##### Coding
 [JS Bin](<https://jsbin.com>)<br>
-[HTML文法チェック](<https://validator.w3.org/#validate_by_input>)
+[HTML文法チェック](<https://validator.w3.org/#validate_by_input>)<br>
 [CodePen](https://codepen.io/trending)<br>
 
 ##### Diff
