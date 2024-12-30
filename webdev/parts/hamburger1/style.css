@@ -1,0 +1,189 @@
+@charset "UTF-8";
+/* 文字コードの指定 */
+
+/* ベースのスタイル
+------------------------------------------------------------*/
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.6;
+    letter-spacing: .1em;
+    color: #fff;
+    background-color: #071e3d;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+small {
+    font-size: 0.75rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+/* ヘッダー
+------------------------------------------------------------*/
+
+.header {
+    display: flex;
+}
+
+.header-main-img {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url("../images/slide1.jpg");
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+}
+
+/* カートボタン、ハンバーガーボタン */
+.cart-button,
+.hamburger-button {
+    position: fixed;
+    top: 0.937rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0.875rem;
+    line-height: 0;
+    color: #fff;
+    border-radius: 50%;
+    background-color: #071e3d;
+}
+
+.cart-button:hover,
+.hamburger-button:hover {
+    cursor: pointer;
+    background-color: #1c5095;
+}
+
+/* カートボタン */
+.cart-button {
+    left: 0.937rem;
+    font-size: 1.25rem;
+}
+
+/* ハンバーガーボタン */
+.hamburger-button {
+    right: 0.937rem;
+    font-size: 1.75rem;
+}
+
+/* ロゴ */
+.mainlogo {
+    padding: 0.875rem;
+    margin-top: 1.25rem;
+    font-size: 1.75rem;
+    font-family: 'Noto Serif JP', serif;
+    line-height: 0;
+    text-align: center;
+    color: #071e3d;
+}
+
+/* キャッチコピー */
+.catch {
+    position: absolute;
+    top: 48%;
+    left: 10%;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.187rem;
+    color: #071e3d;
+}
+
+/* 縦線 */
+.horizon-line {
+    position: absolute;
+    bottom: 2.187rem;
+    left: 50%;
+    width: .0625rem;
+    height: calc(20% - 3.125rem);
+    background-color: #071e3d;
+}
+
+/* スクロールの文字 */
+.scroll {
+    position: absolute;
+    bottom: 0.937rem;
+    width: 100%;
+    font-size: 0.75rem;
+    text-align: center;
+    color: #071e3d;
+}
+
+/**
+* ハンバーガーメニュー用のCSS
+*/
+
+/* ハンバーガーメニュー */
+.hamburger-menu {
+    position: fixed;
+    top: 5rem;
+    z-index: 1000;
+    width: 100vw;
+    height: calc(100vh - 5rem);
+    background-color: #071e3d;
+    opacity: .9;
+    
+    /*--- スライドインの書き方-1
+    trasformで上下左右いずれかに100%移動させてブラウザ表示領域の外に隠す
+    transform: translateX(100%); / 右に隠す(右からスライドイン)
+    transform: translateX(-100%); / 左に隠す(左からスライドイン)
+    transform: translateY(-100%); / 上に隠す(上からスライドイン)
+    transform: translateY(100%); / 下に隠す(下からスライドイン)
+    --------*/
+
+    /*--- スライドインの書き方-2
+    positionを指定してブラウザ表示領域の外に隠す
+    left: 100%;   / 左から100%(右に隠す)
+    right: 100%;  / 右から100%(左に隠す)
+    top: 100%;    / 上から100%(下に隠す)
+    bottom: 100%; / 下から100%(上に隠す)
+    visibility: visible; <--- これはたぶんいらない
+    --------*/
+    left: 100%;
+
+    transition: all 0.6s;
+}
+
+/* スライドイン後の位置の指定 */
+.hamburger-menu-active {
+    /*--- スライドインの書き方-1
+    transform: translateX(0); / 左・右からスライドインさせる場合
+    transform: translateY(0); / 上・下からスライドインさせる場合
+    --------*/
+
+    /*--- スライドインの書き方-2
+    left: 0;   / 右に隠したメニューを引き出す
+    right: 0;  / 左に隠したメニューを引き出す
+    top: 0;    / 下に隠したメニューを引き出す
+    bottom: 0; / 上に隠したメニューを引き出す
+    visibility: visible; <--- これはたぶんいらない
+    --------*/
+    left: 0;
+}
+
+.hamburger-menu-list {
+    width: 80%;
+    padding: 0 10%;
+    margin: 1.75rem auto;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.75rem;
+    text-align: left;
+    list-style: none;
+}
+
+.hamburger-menu-list li {
+    margin-bottom: 0.625rem;
+}

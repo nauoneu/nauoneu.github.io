@@ -3,67 +3,69 @@ title: Github Pages
 ---
 
 <!-- omit in toc -->
-# Github PagesでBlogサイトを作る
-GithubにはPagesという機能があり、GithubにアップしたHTMLファイルをWebサイトとして公開することができる。<br>
-静的サイトなのでアクセス数の多いページを表示させるとかタグでIndexを生成するとかはできないが、個人用のBlogサイトとしては十分な機能が無料で利用できる。<br>
+# Github PagesでWebサイトを作る
+GithubにはPagesという機能があり、Githubリポジトリ上のファイルをWebサイトとして公開することができる。<br>
 
-またGithub PagesではJekyllという静的サイトジェネレーターを使えるので、Markdownで書いたドキュメントをGithubリポジトリにアップすると自動的にHTMLに変換してアクセスできるようにしてくれる。<br>
+標準でJekyllという静的サイトジェネレーターが動いているので、Markdownで書いたドキュメントをGithubリポジトリにアップすると自動的にHTMLに変換してアクセスできるようにしてくれる。<br>
 
-MarkdownとGitの仕組みを組み合わせてドキュメントのメンテナンスを効率的に行えるので、無料で利用できる個人用のドキュメントアーカイブとしては大変便利なサービスである。<br>
+MarkdownとGitの仕組みを組み合わせてドキュメントのメンテナンスを効率的に行えるので、無料で利用できる個人用のBlogサービスとしては大変優れている。<br>
 
 ここではまずGithub PagesでJekyllを使った静的サイトが動くようにするまでの手順をまとめる。<br>
 
 - [1. Github Pagesサイトをつくる](#1-github-pagesサイトをつくる)
-  - [1.1 Githubアカウントを作る](#11-githubアカウントを作る)
-  - [1.2 リポジトリを作る](#12-リポジトリを作る)
-- [2. ローカル環境をつくる](#2-ローカル環境をつくる)
-  - [2.1 ローカルリポジトリの作成](#21-ローカルリポジトリの作成)
-  - [2.2 Jekyllをローカルで動かす](#22-jekyllをローカルで動かす)
-    - [(1) GEMの保存先を設定](#1-gemの保存先を設定)
-    - [(2) Ruby をインストール](#2-ruby-をインストール)
-    - [(3) jekyll と bundler をインストール](#3-jekyll-と-bundler-をインストール)
-    - [(4) Jekyll サイトを ./myblog に作成](#4-jekyll-サイトを-myblog-に作成)
-    - [(5) Gemfile を編集して gem を一括インストール](#5-gemfile-を編集して-gem-を一括インストール)
-    - [(6) Jekyll サイトを起動](#6-jekyll-サイトを起動)
-  - [2.3 ローカルファイルをpush](#23-ローカルファイルをpush)
-- [3. Github Pagesサイトを更新する](#3-github-pagesサイトを更新する)
+  - [1.1. Githubアカウントを作る](#11-githubアカウントを作る)
+  - [1.2. リポジトリを作る](#12-リポジトリを作る)
+  - [1.3. Github Pagesで使える静的サイトジェネレータについて](#13-github-pagesで使える静的サイトジェネレータについて)
+- [2. Jekyllサイトのカスタマイズ](#2-jekyllサイトのカスタマイズ)
+  - [2.1. ローカルリポジトリの作成](#21-ローカルリポジトリの作成)
+  - [2.2. Jekyllをローカルで動かす](#22-jekyllをローカルで動かす)
+    - [2.2.1. GEMの保存先を設定](#221-gemの保存先を設定)
+    - [2.2.2. Ruby をインストール](#222-ruby-をインストール)
+    - [2.2.3. jekyll と bundler をインストール](#223-jekyll-と-bundler-をインストール)
+    - [2.2.4. Jekyll サイトを ./myblog に作成](#224-jekyll-サイトを-myblog-に作成)
+    - [2.2.5. Gemfile を編集して gem を一括インストール](#225-gemfile-を編集して-gem-を一括インストール)
+    - [2.2.6. Jekyll サイトを起動](#226-jekyll-サイトを起動)
+  - [2.3. ローカルファイルをpush](#23-ローカルファイルをpush)
 
 # 1. Github Pagesサイトをつくる
-## 1.1 Githubアカウントを作る
+## 1.1. Githubアカウントを作る
 <https://github.com> へアクセスして適当なアカウントを作る。
 
-## 1.2 リポジトリを作る
+## 1.2. リポジトリを作る
 Githubへログインしてリポジトリを新規作成する。<br>
-PagesでJekyllを使う場合は以下のようなネーミングルールで作成しないとダメ。<br>
+リポジトリ名は以下のようなネーミングルールで作成する。<br>
 - リポジトリ名: `account-name.github.io`<br>
 
-次にリポジトリの `Settings > Pages` からPagesを有効にする。
-- Source: Deploy from a Branch
-- Branch: main
+Pagesはデフォルトで有効になっている。<br>
+リポジトリの `Settings > Pages` で設定の変更ができる。<br>
+カスタムドメインの設定はここで実施する。<br>
 
-これだけで `https://account-name.github.io/` で静的Blogサイトが作られる。<br>
-ここにHTMLファイルを作りこんでいくこともできるが、Jekyllを使ってMarkdownで記事を書いていくのが楽でいい。<br>
-ということでここからJekyllを使えるように設定していく。
+リポジトリを作るだけで `https://account-name.github.io/` でアクセスできるようになる。リポジトリ作成直後は以下のように `README.md` の内容が表示される。<br>
+`index.md` がない場合は `README.md` から `index.html` が生成されているようだ。<br>
+![Default Page](./images/github-pages-setup-1.png)
 
-まだコンテンツを何もアップロードしていないので、この時点で上記URLにアクセスしても 404 File not found となる。
+`index.md` を作ると `README.md` に代わってそれが表示されるようになる。`index.md` の中でほかのMarkdownファイルにリンクを張っていくだけでもシンプルなBlogサイトみたいな使い方はできる。
 
+だがそれだけではもったいないので、Jekyllをカスタマイズして本格的なWebサイトとして作りこんでいくことにする。<br>
 以下が公式のクイックスタートガイド。基本的にこれに沿って作業していく。<br>
 <https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll>
 
-以下はHexo(Js)で設定した例だがイメージをつかむのに参考になる。<br>
-Hexoの場合は上記のリポジトリ名ルールでなくても動くみたい。<br>
+## 1.3. Github Pagesで使える静的サイトジェネレータについて
+なお、Github Pages標準のSSGがJekyllなのでそれを使うのが手っ取り早いが、Github PagesではJavaScriptをサポートしているので、JavaScriptベースのSSGも使えるらしい。
+
+以下はHexoの例。Next.jsを使った例などもネット上で見つかるので、本格的に作りこみたい場合はJavaScriptベースのSSGを使うのもよさそう。<br>
 <https://www.bedroomcomputing.com/2020/08/2020-0815-engineer-static-site-gen-blog/><br>
 <https://www.bedroomcomputing.com/2020/11/2020-1123-hexo-github/>
 
-# 2. ローカル環境をつくる
+# 2. Jekyllサイトのカスタマイズ
 設定の流れは以下のようになる。
 - ローカルでGitリポジトリを作って、そこにJekyll環境を作る
 - Jekyll環境をローカルでチューニングする
 - できあがったJekyll環境をリモートリポジトリにPushする
-
+　
 ローカル環境にはWSLを使う。
 
-## 2.1 ローカルリポジトリの作成
+## 2.1. ローカルリポジトリの作成
 ```
 $ mkdir path/to/local/repo
 $ cd pas/to/local/repo
@@ -72,14 +74,15 @@ $ git remote add origin git@github.com:account/account.github.io.git
 $ git pull origin main
 ```
 
-## 2.2 Jekyllをローカルで動かす
+## 2.2. Jekyllをローカルで動かす
 <https://jekyllrb.com/docs/><br>
 <https://jekyllrb.com/docs/installation/><br>
 <https://docs.github.com/ja/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll><br>
-ここらを参照して設定。<br>
-一連の作業が無事終わると、Jekyllにデフォルトで入っているminimaというThemeでサイトが起動する。
+基本的にはこのあたりを参照して設定する。<br>
+一連の作業が無事終わると、Jekyllにデフォルトで入っているminimaというThemeでサイトが起動する。<br>
+以降が手順詳細。
 
-### (1) GEMの保存先を設定
+### 2.2.1. GEMの保存先を設定
 gemはRubyのパッケージ（ライブラリ）管理の仕組みで、Pythonでいうところのpip。<br>
 rootでインストールするとパッケージの依存関係で先々困ることになるので、ユーザー毎にgemの保存先を設定して管理するような仕組みになっている。<br>
 詳細は以下のサイトなどを参照。<br>
@@ -92,23 +95,23 @@ export BUNDLE_PATH="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 ```
 
-### (2) Ruby をインストール
+### 2.2.2. Ruby をインストール
 ```
 sudo apt-get install ruby-full build-essential
 ```
 
-### (3) jekyll と bundler をインストール
+### 2.2.3. jekyll と bundler をインストール
 ```
 gem install jekyll bundler
 ```
 
-### (4) Jekyll サイトを ./myblog に作成
+### 2.2.4. Jekyll サイトを ./myblog に作成
 ```
 jekyll new myblog
 cd myblog
 ```
 
-### (5) Gemfile を編集して gem を一括インストール
+### 2.2.5. Gemfile を編集して gem を一括インストール
 gem "jekyll" で始まる行をコメントアウト。<br>
 gem "github-pages" で始まる行にバージョン `"~> 229"` を追記してアンコメント。<br>
 webrickも入れないとダメみたい。
@@ -127,13 +130,13 @@ github-pagesのバージョンはここから確認。<br>
 bundle install
 ```
 
-### (6) Jekyll サイトを起動
+### 2.2.6. Jekyll サイトを起動
 ```
 bundle exec jekyll serve
 ```
 成功すると、<http://127.0.0.1:4000> でサイトが起動する。
 
-## 2.3 ローカルファイルをpush
+## 2.3. ローカルファイルをpush
 ローカルで動いたJekyll環境を、リモートリポジトリにPushする。<br>
 うまくいったら <https://account-name.github.io/> に反映される。
 ```
@@ -142,5 +145,4 @@ $ git commit -m "Initial commit"
 $ git push origin main
 ```
 
-# 3. Github Pagesサイトを更新する
-ローカル環境で作成したMarkdownファイル(.md)をリモートリポジトリにPushすると、自動的にHTMLファイルが生成されてブラウザでアクセスできるようになる。<br>
+ここまでの作業で、とりあえずJekyllのデフォルトTheme(minima)を使ったサイトのカスタマイズができるようになった。<br>

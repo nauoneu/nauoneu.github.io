@@ -1,0 +1,158 @@
+/* ベース
+------------------------------------------------------------*/
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.6;
+    letter-spacing: .1em;
+    color: #fff;
+    background-color: #071e3d;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+small {
+    font-size: 0.75rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+/* 共通
+------------------------------------------------------------*/
+
+section {
+    padding: 3.75rem 0;
+}
+
+section .container {
+    width: 90%;
+    margin: auto;
+}
+
+section h2 {
+    margin-bottom: 1.25rem;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.5rem;
+    text-align: center;
+    letter-spacing: 0.187rem;
+    line-height: 40px;
+}
+
+/* カルーセル
+------------------------------------------------------------*/
+
+.carousel-slide {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    /* Default position - center */
+}
+
+.photo-title {
+    display: flex;
+    justify-content: center;
+}
+
+.photo-title h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 24px;
+    line-height: 40px;
+}
+
+/* Slick 矢印 -----------------------------------------------
+
+main.js の中で slick-arrow アイコン画像を指定している。
+
+$('.carousel').slick({
+  arrows: true,
+  prevArrow: '<img src="../images/arrow_left.svg" class="slide-arrow prev-arrow">',
+  nextArrow: '<img src="../images/arrow_right.svg" class="slide-arrow next-arrow">',
+});
+
+この場合 .slic-arrow, .prev-arrow, .next-arrow で slick-arrow の位置を指定する。
+main.js の中でアイコンを指定していない場合は、これらのスタイルも指定しなくていい。
+その場合はデフォルトのアイコンがスライドの左右にはみ出した形で表示される。
+
+------------------------------------------------------------*/
+
+.slick-arrow {
+    position: absolute;
+    top: calc((100% - 40px) / 2);
+    z-index: 1;
+    cursor: pointer;
+}
+
+.prev-arrow {
+    left: 1.25rem;
+}
+
+.next-arrow {
+    right: 1.25rem;
+}
+
+/* Slickドット -----------------------------------------------
+
+以下のセレクタにスタイルを設定する。
+
+.slick-dots { }
+ドットの位置と間隔
+
+.slick-dots li { }
+ドットのサイズ
+
+.slick-dots li button { }
+ドットの色
+
+.slick-dots li button::before { }
+選択中のドットのサイズ
+
+.slick-dots li button:hover::before,
+.slick-dots li.slick-active button::before { }
+選択中のドットの色
+
+------------------------------------------------------------*/
+
+.slick-dots {
+    bottom: -24px;
+    display: flex;
+    column-gap: 22px;
+    justify-content: center;
+}
+
+.slick-dots li {
+    width: 8px;
+    height: 8px;
+    margin: 0;
+}
+
+.slick-dots li button {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #bfbfbf;
+    cursor: pointer;
+    padding: 0;
+}
+
+.slick-dots li button::before {
+    width: 8px;
+    height: 8px;
+    line-height: normal;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.slick-dots li button:hover::before,
+.slick-dots li.slick-active button::before {
+    color: #000;
+    background-color: #000;
+    opacity: 1;
+}

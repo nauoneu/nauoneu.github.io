@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12.687" height="23.625" viewBox="0 0 12.687 23.625">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="cover_cover_arrow_left.svg" data-name="cover/cover_arrow_left.svg" class="cls-1" d="M551.615,288.29a0.912,0.912,0,0,1,0,1.284h0l-10.21,10.254,10.21,10.253a0.913,0.913,0,0,1,0,1.286,0.9,0.9,0,0,1-1.28,0l-10.848-10.9a0.91,0.91,0,0,1,0-1.284h0l10.848-10.9a0.9,0.9,0,0,1,1.278,0Z" transform="translate(-539.219 -288.031)"/>
+</svg>
